@@ -5,6 +5,22 @@
 **基準文書**: docs/spec/GDD1.0.md  
 **ステータス**: ドラフト（レビュー待ち）
 
+## 実装状況（2026-02-09）
+
+- 実装済み:
+  - `Assets/_Project/Scripts/Camera/CameraManager.cs` にて
+    - マウス感度のX/Y分離
+    - 回転スムージング
+    - 一人称/三人称の遷移
+    - シネマティックゾーン切替
+  - `Assets/_Project/Scripts/Player/PlayerController.cs` から `OnTogglePerspective` で視点切替
+  - `Assets/InputSystem_Actions.inputactions` に `TogglePerspective` を追加
+- 運用ドキュメント:
+  - `docs/dev/PLAYER_CAMERA_PHASED_IMPLEMENTATION_2026-02-09.md`
+- 未実装:
+  - 本書で定義している高度な FramingComposer/SoftZone/HardBounds の完全実装
+  - カメラモードを完全分離した `ICameraMode` 構成
+
 ---
 
 ## 0. 現状と課題

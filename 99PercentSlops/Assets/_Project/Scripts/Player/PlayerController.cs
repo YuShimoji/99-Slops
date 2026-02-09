@@ -11,6 +11,11 @@ namespace GlitchWorker.Player
     {
         [Header("Ground Check")]
         [SerializeField] private LayerMask _groundLayer = ~0;
+        [Header("Experimental One-Hand Mouse Move")]
+        [SerializeField] private bool _enableMouseOneHandMove;
+        [SerializeField, Range(0f, 32f)] private float _mouseMoveDeadZone = 6f;
+        [SerializeField, Range(0.001f, 0.1f)] private float _mouseForwardScale = 0.015f;
+        [SerializeField, Range(0.001f, 0.1f)] private float _mouseStrafeScale = 0.02f;
 
         // Sibling component references
         private Rigidbody _rb;
@@ -22,6 +27,7 @@ namespace GlitchWorker.Player
 
         // Input state
         private Vector2 _moveInput;
+        private Vector2 _resolvedMoveInput;
         private Vector2 _lookInput;
         private bool _jumpPressed;
         private bool _dashPressed;
@@ -103,7 +109,8 @@ namespace GlitchWorker.Player
             }
 
             // Update context input state
-            _context.MoveInput = _moveInput;
+            _resolvedMoveInput = ResolveMoveInput();
+            _context.MoveInput = _resolvedMoveInput;
             _context.JumpRequested = _jumpPressed;
             _context.DashRequested = _dashPressed;
             _context.FastFallRequested = _fastFallPressed;
@@ -208,6 +215,12 @@ namespace GlitchWorker.Player
             }
         }
 
+        public void OnTogglePerspective(InputValue value)
+        {
+            if (!value.isPressed || CameraManager.Instance == null) return;
+            CameraManager.Instance.ToggleFirstThirdPerson();
+        }
+
         #endregion
 
         #region Fallback (pre-state-machine direct control)
@@ -217,7 +230,7 @@ namespace GlitchWorker.Player
             // Movement input to PlayerMovement
             if (_movement != null)
             {
-                _movement.SetMoveInput(_moveInput);
+                _movement.SetMoveInput(_resolvedMoveInput);
             }
         }
 
@@ -242,6 +255,26 @@ namespace GlitchWorker.Player
                     _jump.TryExecuteJump();
                 }
             }
+        }
+
+        private Vector2 ResolveMoveInput()
+        {
+            Vector2 resolved = _moveInput;
+            if (!_enableMouseOneHandMove || Mouse.current == null)
+                return resolved;
+
+            bool left = Mouse.current.leftButton.isPressed;
+            bool right = Mouse.current.rightButton.isPressed;
+            if (!left && !right)
+                return resolved;
+
+            Vector2 delta = _lookInput;
+            if (delta.magnitude < _mouseMoveDeadZone)
+                return resolved;
+
+            float forward = Mathf.Clamp01((Mathf.Abs(delta.x) + Mathf.Abs(delta.y)) * _mouseForwardScale);
+            float strafe = Mathf.Clamp(delta.x * _mouseStrafeScale, -1f, 1f);
+            return new Vector2(strafe, Mathf.Max(resolved.y, forward));
         }
 
         #endregion
