@@ -16,7 +16,7 @@ namespace GlitchWorker.Drone
 
         [Header("References")]
         [SerializeField] private Transform _beamOrigin;
-        [SerializeField] private Camera _playerCamera;
+        [SerializeField] private UnityEngine.Camera _playerCamera;
 
         private Rigidbody _heldObject;
         private PropBase _heldProp;

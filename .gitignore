@@ -69,3 +69,6 @@ desktop.ini
 
 # Embedded git repos (managed separately)
 shared-workflows/
+
+# Build output
+build/
