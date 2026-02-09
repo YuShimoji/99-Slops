@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d3025c037783944182836d66a68ef77, type: 3}
+  m_Name: PlayerBaseStats
+  m_EditorClassIdentifier: Assembly-CSharp::GlitchWorker.Player.PlayerBaseStats
+  MoveSpeed: 6
+  Acceleration: 40
+  Deceleration: 50
+  AirAccelMultiplier: 0.3
+  AirDragMultiplier: 0.1
+  AirSpeedRatio: 1
+  TurnSpeed: 720
+  JumpForce: 7
+  GravityScale: 2.5
+  FallGravityScale: 3.5
+  MaxFallSpeed: 30
+  CoyoteTime: 0.15
+  JumpBufferTime: 0.1
+  GroundCheckRadius: 0.3
+  GroundCheckOffset: 0.05
+  SlopeLimit: 45
+  SlopeSlideSpeed: 8
+  SlopeSlideGravity: 15
+  DashSpeed: 18
+  DashDuration: 0.25
+  DashCooldown: 0.8
+  DashCharges: 1
+  DashTurnRate: 0
+  FastFallMultiplier: 4
+  FastFallMaxSpeed: 50
+  FastFallEntryMinHeight: 1
+  LandingLagDuration: 0.133
+  SlowMotionScale: 0.3
+  SlowMotionMaxDuration: 5
+  SlowMotionGauge: 100
+  SlowMotionDrainRate: 20
+  SlowMotionRechargeRate: 10
+  SlowMotionRechargeDelay: 2

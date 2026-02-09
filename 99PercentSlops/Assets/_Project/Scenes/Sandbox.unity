@@ -314,6 +314,11 @@ GameObject:
   - component: {fileID: 573157233}
   - component: {fileID: 573157232}
   - component: {fileID: 573157231}
+  - component: {fileID: 573157237}
+  - component: {fileID: 573157238}
+  - component: {fileID: 573157239}
+  - component: {fileID: 573157240}
+  - component: {fileID: 573157241}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -476,6 +481,71 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &573157237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 573157229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11441e6fe937558428a470467a35ee0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GlitchWorker.Player.PlayerStats
+  _baseStats: {fileID: 11400000, guid: a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6, type: 2}
+--- !u!114 &573157238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 573157229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4198efbd17986db42a6e41e942567171, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GlitchWorker.Player.PlayerMovement
+--- !u!114 &573157239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 573157229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3598b32cc9f2eb44dab8fd1da235afb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GlitchWorker.Player.PlayerJump
+  _groundLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+--- !u!114 &573157240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 573157229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69360f80e2f0b1d4ba74beade567c1b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GlitchWorker.Player.PlayerStateMachine
+--- !u!114 &573157241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 573157229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f28b80ce4b5beb44a7c57e1bb8f90d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GlitchWorker.Player.PlayerSlowMotion
+  _activationMode: 0
 --- !u!1 &582743175
 GameObject:
   m_ObjectHideFlags: 0
@@ -485,6 +555,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 582743176}
+  - component: {fileID: 582743177}
   m_Layer: 0
   m_Name: CameraHolder
   m_TagString: Untagged
@@ -492,6 +563,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &582743177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 582743175}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dcd6c7d47a8d6440958a419fd5a884e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GlitchWorker.Camera.CameraManager
+  _mouseSensitivity: 2
+  _maxLookAngle: 80
+  _cameraHolder: {fileID: 582743176}
 --- !u!4 &582743176
 Transform:
   m_ObjectHideFlags: 0
