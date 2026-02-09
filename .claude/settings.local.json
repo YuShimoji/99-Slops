@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "additionalDirectories": [
+      "c:\\Users\\thank\\Storage\\Game Projects\\99%Slops\\docs"
+    ],
+    "allow": [
+      "Read(//c/Users/thank/Storage/Game Projects/99%Slops/99PercentSlops/Assets/**)"
+    ]
+  }
+}
