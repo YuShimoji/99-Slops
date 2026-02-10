@@ -40,6 +40,11 @@ namespace GlitchWorker.Player.States
             // Transition: left ground -> CoyoteHang or Fall
             if (!ctx.IsGrounded)
             {
+                if (ctx.Rb.linearVelocity.y > -0.2f)
+                {
+                    return;
+                }
+
                 if (ctx.Jump.IsCoyoteAvailable)
                     ctx.StateMachine.TransitionTo(PlayerStateType.CoyoteHang);
                 else

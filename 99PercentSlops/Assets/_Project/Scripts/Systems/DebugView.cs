@@ -33,6 +33,8 @@ namespace GlitchWorker.Systems
             {
                 _debugVolume.weight = _isActive ? 1f : 0f;
             }
+
+            GameEventBus.RaiseDebugViewToggled(_isActive);
         }
     }
 }

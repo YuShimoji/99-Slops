@@ -1,4 +1,5 @@
 using UnityEngine;
+using GlitchWorker.Systems;
 
 namespace GlitchWorker.Props
 {
@@ -39,6 +40,7 @@ namespace GlitchWorker.Props
             PropState previousState = _currentState;
             _currentState = newState;
             OnStateChanged(previousState, newState);
+            GameEventBus.RaisePropStateChanged(this, previousState, newState);
         }
 
         protected abstract void OnStateChanged(PropState previousState, PropState newState);

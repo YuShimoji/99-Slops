@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using GlitchWorker.Props;
+using GlitchWorker.Systems;
 
 namespace GlitchWorker.Drone
 {
@@ -109,6 +110,8 @@ namespace GlitchWorker.Drone
             _springJoint.autoConfigureConnectedAnchor = false;
             _springJoint.connectedAnchor = Vector3.zero;
             _springJoint.anchor = Vector3.zero;
+
+            GameEventBus.RaiseBeamGrabbed(_heldObject, _heldProp);
         }
 
         private void ReleaseObject()
@@ -123,6 +126,7 @@ namespace GlitchWorker.Drone
             if (_heldObject == null) return;
 
             Rigidbody thrown = _heldObject;
+            PropBase thrownProp = _heldProp;
             CleanupHold();
 
             Vector3 throwDirection = _playerCamera != null
@@ -130,10 +134,14 @@ namespace GlitchWorker.Drone
                 : transform.forward;
 
             thrown.AddForce(throwDirection * _throwForce, ForceMode.Impulse);
+            GameEventBus.RaiseBeamThrown(thrown, thrownProp);
         }
 
         private void CleanupHold()
         {
+            Rigidbody releasedBody = _heldObject;
+            PropBase releasedProp = _heldProp;
+
             if (_springJoint != null)
             {
                 Destroy(_springJoint);
@@ -148,6 +156,11 @@ namespace GlitchWorker.Drone
 
             _heldObject = null;
             _heldProp = null;
+
+            if (releasedBody != null)
+            {
+                GameEventBus.RaiseBeamReleased(releasedBody, releasedProp);
+            }
         }
 
         private void UpdateHeldObjectPosition()

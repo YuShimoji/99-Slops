@@ -24,6 +24,7 @@ namespace GlitchWorker.Player
         private PlayerStateMachine _stateMachine;
         private PlayerStats _stats;
         private PlayerSlowMotion _slowMotion;
+        private PlayerInput _playerInput;
 
         // Input state
         private Vector2 _moveInput;
@@ -38,6 +39,7 @@ namespace GlitchWorker.Player
 
         // State context shared with all states
         private PlayerStateContext _context;
+        private bool _isCursorLocked;
 
         // Public accessors
         public PlayerStateType CurrentStateType => _stateMachine != null
@@ -57,8 +59,10 @@ namespace GlitchWorker.Player
             _stateMachine = GetComponent<PlayerStateMachine>();
             _stats = GetComponent<PlayerStats>();
             _slowMotion = GetComponent<PlayerSlowMotion>();
+            _playerInput = GetComponent<PlayerInput>();
 
             _inputBuffer = new InputBuffer(8);
+            EnsureInputIsActive();
 
             // DroneBeam may live on Drone object; find it in scene
             var droneBeam = FindFirstObjectByType<DroneBeam>();
@@ -87,17 +91,18 @@ namespace GlitchWorker.Player
                 _context.DashChargesRemaining = Mathf.RoundToInt(_stats.GetStat(StatType.DashCharges));
             }
 
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
+            SetCursorLocked(true);
         }
 
         private void Update()
         {
+            HandleCursorToggle();
+
             // Tick input buffer
             _inputBuffer.Tick();
 
             // Camera look (delegated to CameraManager stub)
-            if (CameraManager.Instance != null)
+            if (_isCursorLocked && CameraManager.Instance != null)
             {
                 CameraManager.Instance.HandleLook(_lookInput, transform);
             }
@@ -154,6 +159,61 @@ namespace GlitchWorker.Player
             {
                 FallbackFixedUpdate();
             }
+        }
+
+        private void EnsureInputIsActive()
+        {
+            if (_playerInput == null) return;
+
+            if (_playerInput.actions != null)
+            {
+                var playerMap = _playerInput.actions.FindActionMap("Player", throwIfNotFound: false);
+                if (playerMap != null)
+                {
+                    if (!playerMap.enabled)
+                    {
+                        playerMap.Enable();
+                    }
+
+                    if (_playerInput.currentActionMap == null || _playerInput.currentActionMap.name != playerMap.name)
+                    {
+                        _playerInput.SwitchCurrentActionMap(playerMap.name);
+                    }
+
+                    if (string.IsNullOrEmpty(_playerInput.defaultActionMap))
+                    {
+                        _playerInput.defaultActionMap = playerMap.name;
+                    }
+                }
+            }
+
+            if (!_playerInput.inputIsActive)
+            {
+                _playerInput.ActivateInput();
+            }
+        }
+
+        private void HandleCursorToggle()
+        {
+            if (Keyboard.current == null) return;
+
+            if (Keyboard.current.escapeKey.wasPressedThisFrame)
+            {
+                SetCursorLocked(false);
+                return;
+            }
+
+            if (!_isCursorLocked && Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame)
+            {
+                SetCursorLocked(true);
+            }
+        }
+
+        private void SetCursorLocked(bool locked)
+        {
+            _isCursorLocked = locked;
+            Cursor.lockState = locked ? CursorLockMode.Locked : CursorLockMode.None;
+            Cursor.visible = !locked;
         }
 
         private void RegisterStates()
@@ -260,6 +320,19 @@ namespace GlitchWorker.Player
         private Vector2 ResolveMoveInput()
         {
             Vector2 resolved = _moveInput;
+
+            // Fallback keyboard polling if PlayerInput callbacks are not firing.
+            if (resolved.sqrMagnitude < 0.0001f && Keyboard.current != null)
+            {
+                float x = 0f;
+                float y = 0f;
+                if (Keyboard.current.aKey.isPressed || Keyboard.current.leftArrowKey.isPressed) x -= 1f;
+                if (Keyboard.current.dKey.isPressed || Keyboard.current.rightArrowKey.isPressed) x += 1f;
+                if (Keyboard.current.sKey.isPressed || Keyboard.current.downArrowKey.isPressed) y -= 1f;
+                if (Keyboard.current.wKey.isPressed || Keyboard.current.upArrowKey.isPressed) y += 1f;
+                resolved = Vector2.ClampMagnitude(new Vector2(x, y), 1f);
+            }
+
             if (!_enableMouseOneHandMove || Mouse.current == null)
                 return resolved;
 
