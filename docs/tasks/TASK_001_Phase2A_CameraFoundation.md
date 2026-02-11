@@ -1,5 +1,5 @@
 # Task: Phase2A Camera Foundation（責務分離 + テスト整備）
-Status: OPEN
+Status: IN_PROGRESS
 Tier: 2
 Branch: feature/task-001-camera-foundation
 Owner: Worker-1
