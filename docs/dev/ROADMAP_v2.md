@@ -254,4 +254,25 @@ Phase 1 (Scaffold) ✅
 
 ---
 
+## 7. ストーリーチャプター型（将来バックログ）
+
+要件要約:
+- チャプター駆動（クエスト型）の進行リストを持つ
+- メタ進行で解放されるフラグにより、過去チャプター再訪時に会話・攻略ルートが変化する
+- チャプター群を包含するメインオーバーワールドを持つ
+
+縦切りスライス（実装促進用）:
+
+| Slice | 目的 | 最小実装 | 出口条件 |
+|------|------|---------|---------|
+| S1 | 章リスト基盤 | ChapterDefinition / ChapterCatalog | 章選択と章開始が可能 |
+| S2 | メタ進行基盤 | MetaFlagService（永続化） | 章外フラグの保存/復元が可能 |
+| S3 | オーバーワールド基盤 | OverworldDirector（ハブ） | オーバーワールド⇔章遷移が可能 |
+| S4 | 再訪差分基盤 | ChapterVariantResolver | 再訪時の差分会話/分岐ルートが反映 |
+
+対応チケット:
+- `docs/tasks/TASK_002_StoryChapter_OverworldFoundation.md`（OPEN）
+
+---
+
 *— End of Document —*

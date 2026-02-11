@@ -2,7 +2,7 @@
 
 ## 基本情報
 
-- **最終更新**: 2026-02-11T20:51:30+09:00
+- **最終更新**: 2026-02-11T23:50:00+09:00
 - **更新者**: Codex
 
 ---
@@ -27,11 +27,24 @@
 - **期限目安**: 2026-02-18
 - **状態**: 進行中
 - **進捗**: 55%
+- **進捗**: 80%
 - **含まれるタスク**: TASK_001
 - **完了基準**:
   - [ ] CameraManager の責務分離（Mode/Settings/Smoother）
   - [ ] EditMode / PlayMode の主要テスト追加
   - [ ] テスト全通過・ビルド成功
+
+### MG-2: Story Chapter / Overworld 基盤設計
+
+- **ゴール**: チャプターリスト構造とメタ進行を持つオーバーワールド構造を縦切りで実装可能な状態にする
+- **期限目安**: 2026-02-28
+- **状態**: 未着手
+- **進捗**: 10%
+- **含まれるタスク**: TASK_002
+- **完了基準**:
+  - [ ] ChapterDefinition / ChapterCatalog の最小仕様が確定
+  - [ ] MetaFlagService の永続化仕様が確定
+  - [ ] OverworldDirector と再訪差分フローがタスク分割されている
 
 ---
 
@@ -45,6 +58,14 @@
   - [x] チケットに Focus/Forbidden/DoD/Test Plan/Impact Radar を記載
   - [x] Milestone 紐付け（SG-1 / MG-1）を記載
 
+### SG-2: Story Chapter 仕様をバックログ化
+
+- **ゴール**: 将来実装に向けた縦切りタスクを起票し、優先度と依存を見える化する
+- **対象タスク**: TASK_002
+- **完了基準**:
+  - [x] チャプター / オーバーワールド要件をタスク化
+  - [x] 縦切りスライス（S1〜S4）を定義
+
 ---
 
 ## 現在地マップ
@@ -57,8 +78,10 @@ gantt
     LG-1 Vertical Slice          :active, lg1, 2026-02-01, 2026-04-30
     section 中期目標
     MG-1 Camera/Foundation       :active, mg1, 2026-02-09, 2026-02-18
+    MG-2 Chapter/Overworld       :active, mg2, 2026-02-12, 2026-02-28
     section 短期目標
     SG-1 Ticketing               :done, sg1, 2026-02-11, 2026-02-11
+    SG-2 Story backlog           :done, sg2, 2026-02-11, 2026-02-11
 ```
 
 ---
@@ -82,3 +105,21 @@ gantt
 **優先度変更**:
 
 - Camera 基盤整備（TASK_001）を最優先へ引き上げ
+
+### 2026-02-11: Worker回収と将来仕様の分割
+
+**Keep（続けること）**:
+
+- Worker成果を即時回収してチケットDoDへ反映する運用
+
+**Problem（課題）**:
+
+- Unityプロジェクトが開かれていると batch test が実行できない
+
+**Try（次に試すこと）**:
+
+- Unity Editor内テストを先に実行してから回収フェーズに入る運用を明文化
+
+**優先度変更**:
+
+- Story Chapter基盤（TASK_002）を中期目標 MG-2 として追加

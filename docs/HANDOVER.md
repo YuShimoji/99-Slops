@@ -33,6 +33,7 @@ GitHubAutoApprove: false
 
 - Worker チケット実行（Phase 2A カメラ責務分離とテスト整備）
 - Worker レポートの `docs/inbox/` 反映と DONE クローズ
+- Story Chapter / Overworld 基盤の縦切り着手（`docs/tasks/TASK_002_StoryChapter_OverworldFoundation.md`）
 
 ## Latest Orchestrator Report
 

@@ -1,4 +1,3 @@
-using GlitchWorker.Player;
 using UnityEngine;
 
 namespace GlitchWorker.Camera
@@ -11,10 +10,9 @@ namespace GlitchWorker.Camera
     }
 
     /// <summary>
-    /// Runtime camera controller for prototype validation:
-    /// - smoothed look
-    /// - 1P/3P transition
-    /// - cinematic override by trigger zone
+    /// Camera orchestrator: delegates pose computation to ICameraMode instances,
+    /// manages mode transitions and input smoothing.
+    /// Public API is unchanged from the monolithic version.
     /// </summary>
     public class CameraManager : MonoBehaviour
     {
@@ -22,40 +20,26 @@ namespace GlitchWorker.Camera
 
         [Header("References")]
         [SerializeField] private Transform _cameraTransform;
+        [SerializeField] private CameraSettings _settings;
 
-        [Header("Look")]
-        [SerializeField] private float _sensitivityX = 2f;
-        [SerializeField] private float _sensitivityY = 2f;
-        [SerializeField] private bool _invertY;
-        [SerializeField] private float _maxLookAngle = 80f;
-        [SerializeField, Min(0f)] private float _rotationSmoothTime = 0.06f;
+        // ── Mode instances ──
+        private FirstPersonMode _firstPersonMode;
+        private ThirdPersonMode _thirdPersonMode;
+        private CinematicMode _cinematicMode;
 
-        [Header("First Person")]
-        [SerializeField] private Vector3 _firstPersonLocalOffset = new Vector3(0f, 0.8f, 0f);
-
-        [Header("Third Person")]
-        [SerializeField, Min(0.1f)] private float _thirdPersonDistance = 3.2f;
-        [SerializeField, Min(0f)] private float _thirdPersonHeightOffset = 1.6f;
-        [SerializeField, Min(0f)] private float _thirdPersonCollisionRadius = 0.2f;
-        [SerializeField] private LayerMask _cameraCollisionMask = ~0;
-
-        [Header("Mode Transition")]
-        [SerializeField, Min(0.01f)] private float _modeTransitionTime = 0.22f;
-        [SerializeField] private CameraViewMode _startupMode = CameraViewMode.FirstPerson;
-
+        // ── Look state ──
         private float _targetYaw;
         private float _targetPitch;
-        private float _smoothedYaw;
-        private float _smoothedPitch;
-        private float _yawVelocity;
-        private float _pitchVelocity;
+        private SmoothedRotationState _smoothState;
+
+        // ── Mode transition ──
         private float _thirdPersonWeight;
         private float _thirdPersonWeightVelocity;
 
         private CameraViewMode _activeMode;
         private CameraViewMode _modeBeforeCinematic;
-        private Transform _cinematicTransform;
-        private CinematicCameraZone _activeZone;
+
+        // ── Public API (unchanged) ──
 
         public Transform ActiveCameraTransform => _cameraTransform != null
             ? _cameraTransform
@@ -74,6 +58,8 @@ namespace GlitchWorker.Camera
             }
         }
 
+        // ── Lifecycle ──
+
         private void Awake()
         {
             if (Instance != null && Instance != this)
@@ -87,7 +73,14 @@ namespace GlitchWorker.Camera
             if (_cameraTransform == null)
                 _cameraTransform = GetComponentInChildren<UnityEngine.Camera>()?.transform;
 
-            _activeMode = _startupMode;
+            if (_settings == null)
+                _settings = CreateFallbackSettings();
+
+            _firstPersonMode = new FirstPersonMode();
+            _thirdPersonMode = new ThirdPersonMode();
+            _cinematicMode = new CinematicMode();
+
+            _activeMode = _settings.StartupMode;
             _thirdPersonWeight = _activeMode == CameraViewMode.ThirdPerson ? 1f : 0f;
         }
 
@@ -97,6 +90,8 @@ namespace GlitchWorker.Camera
                 Instance = null;
         }
 
+        // ── Core camera update (called by PlayerController) ──
+
         public void HandleLook(Vector2 lookInput, Transform playerTransform)
         {
             if (_cameraTransform == null || playerTransform == null)
@@ -105,54 +100,69 @@ namespace GlitchWorker.Camera
             float dt = Time.unscaledDeltaTime;
             if (dt <= 0f) return;
 
+            // 1. Accumulate input (skip during cinematic)
             if (_activeMode != CameraViewMode.Cinematic)
             {
                 float timeScaleCompensation = Time.timeScale > 0.001f ? (1f / Time.timeScale) : 1f;
-                _targetYaw += lookInput.x * _sensitivityX * timeScaleCompensation;
-
-                float invert = _invertY ? 1f : -1f;
-                _targetPitch += lookInput.y * _sensitivityY * timeScaleCompensation * invert;
-                _targetPitch = Mathf.Clamp(_targetPitch, -_maxLookAngle, _maxLookAngle);
+                CameraSmoother.AccumulateLookInput(
+                    lookInput,
+                    _settings.SensitivityX,
+                    _settings.SensitivityY,
+                    _settings.InvertY,
+                    _settings.MaxLookAngle,
+                    timeScaleCompensation,
+                    ref _targetYaw,
+                    ref _targetPitch);
             }
 
-            float rotSmooth = Mathf.Max(0.0001f, _rotationSmoothTime);
-            _smoothedYaw = Mathf.SmoothDampAngle(_smoothedYaw, _targetYaw, ref _yawVelocity, rotSmooth, Mathf.Infinity, dt);
-            _smoothedPitch = Mathf.SmoothDampAngle(_smoothedPitch, _targetPitch, ref _pitchVelocity, rotSmooth, Mathf.Infinity, dt);
+            // 2. Smooth rotation
+            CameraSmoother.SmoothYawPitch(
+                _targetYaw, _targetPitch,
+                ref _smoothState,
+                _settings.RotationSmoothTime,
+                dt);
 
+            // 3. Apply player yaw rotation (skip during cinematic)
             if (_activeMode != CameraViewMode.Cinematic)
             {
-                playerTransform.rotation = Quaternion.Euler(0f, _smoothedYaw, 0f);
+                playerTransform.rotation = Quaternion.Euler(0f, _smoothState.SmoothedYaw, 0f);
             }
 
+            // 4. Update 1P↔3P blend weight
             float thirdPersonTarget = _activeMode == CameraViewMode.ThirdPerson ? 1f : 0f;
             _thirdPersonWeight = Mathf.SmoothDamp(
                 _thirdPersonWeight,
                 thirdPersonTarget,
                 ref _thirdPersonWeightVelocity,
-                _modeTransitionTime,
+                _settings.ModeTransitionTime,
                 Mathf.Infinity,
                 dt);
 
-            if (_activeMode == CameraViewMode.Cinematic && _cinematicTransform != null)
+            // 5. Cinematic override
+            if (_activeMode == CameraViewMode.Cinematic)
             {
-                float t = 1f - Mathf.Exp(-dt / Mathf.Max(0.0001f, _modeTransitionTime));
-                _cameraTransform.position = Vector3.Lerp(_cameraTransform.position, _cinematicTransform.position, t);
-                _cameraTransform.rotation = Quaternion.Slerp(_cameraTransform.rotation, _cinematicTransform.rotation, t);
+                _cinematicMode.ApplyLerp(_cameraTransform, _settings.ModeTransitionTime, dt);
                 return;
             }
 
-            Vector3 firstPersonPosition = playerTransform.TransformPoint(_firstPersonLocalOffset);
-            Quaternion firstPersonRotation = Quaternion.Euler(_smoothedPitch, _smoothedYaw, 0f);
+            // 6. Compute 1P and 3P poses, then blend
+            var (fpPos, fpRot) = _firstPersonMode.ComputePose(
+                playerTransform,
+                _smoothState.SmoothedYaw,
+                _smoothState.SmoothedPitch,
+                _settings);
 
-            Vector3 pivot = playerTransform.position + Vector3.up * _thirdPersonHeightOffset;
-            Quaternion orbit = Quaternion.Euler(_smoothedPitch, _smoothedYaw, 0f);
-            Vector3 thirdPersonPosition = pivot - (orbit * Vector3.forward * _thirdPersonDistance);
-            thirdPersonPosition = ResolveCameraCollision(pivot, thirdPersonPosition);
-            Quaternion thirdPersonRotation = Quaternion.LookRotation((pivot - thirdPersonPosition).normalized, Vector3.up);
+            var (tpPos, tpRot) = _thirdPersonMode.ComputePose(
+                playerTransform,
+                _smoothState.SmoothedYaw,
+                _smoothState.SmoothedPitch,
+                _settings);
 
-            _cameraTransform.position = Vector3.Lerp(firstPersonPosition, thirdPersonPosition, _thirdPersonWeight);
-            _cameraTransform.rotation = Quaternion.Slerp(firstPersonRotation, thirdPersonRotation, _thirdPersonWeight);
+            _cameraTransform.position = Vector3.Lerp(fpPos, tpPos, _thirdPersonWeight);
+            _cameraTransform.rotation = Quaternion.Slerp(fpRot, tpRot, _thirdPersonWeight);
         }
+
+        // ── Mode switching (unchanged signatures) ──
 
         public void ToggleFirstThirdPerson()
         {
@@ -170,8 +180,7 @@ namespace GlitchWorker.Camera
             if (_activeMode != CameraViewMode.Cinematic)
                 _modeBeforeCinematic = _activeMode;
 
-            _cinematicTransform = cameraPoint;
-            _activeZone = zone;
+            _cinematicMode.Enter(cameraPoint, zone);
             _activeMode = CameraViewMode.Cinematic;
         }
 
@@ -179,95 +188,20 @@ namespace GlitchWorker.Camera
         {
             if (_activeMode != CameraViewMode.Cinematic)
                 return;
-            if (zone != null && zone != _activeZone)
+            if (zone != null && zone != _cinematicMode.ActiveZone)
                 return;
 
-            _cinematicTransform = null;
-            _activeZone = null;
+            _cinematicMode.Exit();
             _activeMode = _modeBeforeCinematic;
         }
 
-        private Vector3 ResolveCameraCollision(Vector3 pivot, Vector3 desiredPosition)
+        // ── Internal helpers ──
+
+        private static CameraSettings CreateFallbackSettings()
         {
-            Vector3 dir = desiredPosition - pivot;
-            float dist = dir.magnitude;
-            if (dist <= 0.001f) return desiredPosition;
-
-            dir /= dist;
-            if (Physics.SphereCast(
-                pivot,
-                _thirdPersonCollisionRadius,
-                dir,
-                out RaycastHit hit,
-                dist,
-                _cameraCollisionMask,
-                QueryTriggerInteraction.Ignore))
-            {
-                return pivot + dir * Mathf.Max(0.05f, hit.distance - _thirdPersonCollisionRadius);
-            }
-
-            return desiredPosition;
-        }
-    }
-
-    [RequireComponent(typeof(Collider))]
-    public class CinematicCameraZone : MonoBehaviour
-    {
-        [SerializeField] private Transform _cinematicPoint;
-        [SerializeField] private bool _returnOnExit = true;
-        [SerializeField] private bool _drawGizmo = true;
-        [SerializeField] private Color _gizmoColor = new Color(1f, 0.8f, 0.2f, 0.25f);
-
-        private Collider _triggerCollider;
-
-        private void Awake()
-        {
-            _triggerCollider = GetComponent<Collider>();
-            _triggerCollider.isTrigger = true;
-            if (_cinematicPoint == null)
-                _cinematicPoint = transform;
-        }
-
-        private void OnTriggerEnter(Collider other)
-        {
-            if (CameraManager.Instance == null || !IsPlayer(other))
-                return;
-            CameraManager.Instance.EnterCinematic(_cinematicPoint, this);
-        }
-
-        private void OnTriggerExit(Collider other)
-        {
-            if (!_returnOnExit || CameraManager.Instance == null || !IsPlayer(other))
-                return;
-            CameraManager.Instance.ExitCinematic(this);
-        }
-
-        private static bool IsPlayer(Collider other)
-        {
-            return other.GetComponentInParent<PlayerController>() != null;
-        }
-
-        private void OnDrawGizmosSelected()
-        {
-            if (!_drawGizmo) return;
-
-            var col = GetComponent<Collider>();
-            if (col == null) return;
-
-            Gizmos.color = _gizmoColor;
-            Matrix4x4 old = Gizmos.matrix;
-            Gizmos.matrix = col.transform.localToWorldMatrix;
-
-            if (col is BoxCollider box)
-            {
-                Gizmos.DrawCube(box.center, box.size);
-            }
-            else if (col is SphereCollider sphere)
-            {
-                Gizmos.DrawSphere(sphere.center, sphere.radius);
-            }
-
-            Gizmos.matrix = old;
+            var settings = ScriptableObject.CreateInstance<CameraSettings>();
+            // Defaults match the original hardcoded values
+            return settings;
         }
     }
 }
