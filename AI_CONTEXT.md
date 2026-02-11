@@ -20,3 +20,9 @@ standard
 
 ## Backlog
 なし
+
+## タスク管理（短期/中期/長期）
+
+### 短期（Next）
+
+- [pending] Phase2A Camera Foundation（責務分離 + テスト整備） (ref: docs/tasks/TASK_001_Phase2A_CameraFoundation.md, Status: OPEN)
