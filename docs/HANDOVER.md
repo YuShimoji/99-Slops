@@ -1,13 +1,13 @@
 # Project Handover & Status
 
-**Timestamp**: 2026-02-11T20:51:30+09:00  
+**Timestamp**: 2026-02-12T00:05:00+09:00  
 **Actor**: Codex  
 **Type**: Handover  
 **Mode**: orchestration
 
 ## 基本情報
 
-- **最終更新**: 2026-02-11T20:51:30+09:00
+- **最終更新**: 2026-02-12T00:05:00+09:00
 - **更新者**: Codex
 
 ## GitHubAutoApprove
@@ -31,9 +31,8 @@ GitHubAutoApprove: false
 
 ## バックログ
 
-- Worker チケット実行（Phase 2A カメラ責務分離とテスト整備）
-- Worker レポートの `docs/inbox/` 反映と DONE クローズ
 - Story Chapter / Overworld 基盤の縦切り着手（`docs/tasks/TASK_002_StoryChapter_OverworldFoundation.md`）
+- Camera 回転フィーリング調整（`docs/tasks/TASK_003_CameraRotationTuning.md`）
 
 ## Latest Orchestrator Report
 
@@ -42,6 +41,6 @@ GitHubAutoApprove: false
 
 ## Outlook
 
-- Short-term: CameraManager の責務分離とテストを導入
+- Short-term: Camera回転フィーリングの調整（感度/補間）
 - Mid-term: 3P カメラとプレイヤー向き制御の連携を安定化
 - Long-term: Vertical Slice（探索→制圧→回収→納品）検証ライン到達

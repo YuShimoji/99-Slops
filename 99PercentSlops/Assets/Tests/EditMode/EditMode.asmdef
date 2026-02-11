@@ -2,6 +2,7 @@
     "name": "Tests.EditMode",
     "rootNamespace": "GlitchWorker.Tests.EditMode",
     "references": [
+        "GlitchWorker.Runtime",
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner"
     ],
@@ -10,10 +11,8 @@
     ],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
-    "overrideReferences": true,
-    "precompiledReferences": [
-        "nunit.framework.dll"
-    ],
+    "overrideReferences": false,
+    "precompiledReferences": [],
     "autoReferenced": false,
     "defineConstraints": [
         "UNITY_INCLUDE_TESTS"

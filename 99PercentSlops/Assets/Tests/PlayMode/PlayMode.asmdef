@@ -2,16 +2,15 @@
     "name": "Tests.PlayMode",
     "rootNamespace": "GlitchWorker.Tests.PlayMode",
     "references": [
+        "GlitchWorker.Runtime",
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
-    "overrideReferences": true,
-    "precompiledReferences": [
-        "nunit.framework.dll"
-    ],
+    "overrideReferences": false,
+    "precompiledReferences": [],
     "autoReferenced": false,
     "defineConstraints": [
         "UNITY_INCLUDE_TESTS"

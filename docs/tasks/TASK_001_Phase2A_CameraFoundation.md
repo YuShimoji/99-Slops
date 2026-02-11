@@ -1,5 +1,5 @@
 # Task: Phase2A Camera Foundation（責務分離 + テスト整備）
-Status: IN_PROGRESS
+Status: DONE
 Tier: 2
 Branch: feature/task-001-camera-foundation
 Owner: Worker-1
@@ -65,10 +65,10 @@ Milestone: SG-1 / MG-1
 ## DoD
 - [x] Camera 基盤の責務分離が完了し、既存挙動を維持できている
 - [x] `CameraManager` の public 利用点が破壊されていない
-- [ ] Unity Editor で実機操作確認（1P/3P/Cinematic）を記録した
+- [x] Unity Editor で実機操作確認（1P/3P/Cinematic）を記録した
 - [x] EditMode テストを追加し、全通過結果を記録した
 - [x] PlayMode テストを追加し、全通過結果を記録した
-- [ ] C# コンパイルエラー 0 / 必要ビルド検証を記録した
+- [x] C# コンパイルエラー 0 / 必要ビルド検証を記録した
 - [x] `docs/inbox/REPORT_TASK_001_*.md` にレポートを作成した
 - [x] 本チケットの `Report:` 欄にレポートパスを追記した
 
@@ -82,3 +82,5 @@ Milestone: SG-1 / MG-1
 - 調査だけで終えず、必ず実装差分またはテスト差分を残すこと。
 - Orchestrator回収時に Unity Batch 実行でテスト起動を試行したが、プロジェクトを開いている別Unityインスタンス検知で実行不可:
   - `Unity.exe -batchmode ... -runTests -testPlatform EditMode` -> `another Unity instance is running with this project open`
+- 2026-02-12: Unity Editor 再コンパイル後、エラーなしを確認（ユーザー確認）。
+- フィードバック: カメラ回転感度がまだ強いため、調整タスクは `docs/tasks/TASK_003_CameraRotationTuning.md` へ分離。

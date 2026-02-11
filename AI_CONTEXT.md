@@ -25,5 +25,5 @@ standard
 
 ### 短期（Next）
 
-- [in_progress] Phase2A Camera Foundation（責務分離 + テスト整備） (ref: docs/tasks/TASK_001_Phase2A_CameraFoundation.md, Status: IN_PROGRESS)
 - [pending] Story Chapter / Overworld Foundation（将来実装向けバックログ） (ref: docs/tasks/TASK_002_StoryChapter_OverworldFoundation.md, Status: OPEN)
+- [pending] Camera Rotation Tuning（感度・回転フィーリング調整） (ref: docs/tasks/TASK_003_CameraRotationTuning.md, Status: OPEN)
