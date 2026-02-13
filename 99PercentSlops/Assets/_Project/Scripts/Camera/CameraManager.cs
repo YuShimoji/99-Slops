@@ -1,4 +1,5 @@
 using GlitchWorker.Player;
+using GlitchWorker.Systems;
 using UnityEngine;
 
 namespace GlitchWorker.Camera
@@ -22,6 +23,7 @@ namespace GlitchWorker.Camera
 
         [Header("References")]
         [SerializeField] private Transform _cameraTransform;
+        [SerializeField] private CameraSettings _settings;
 
         [Header("Look")]
         [SerializeField] private float _sensitivityX = 2f;
@@ -62,6 +64,20 @@ namespace GlitchWorker.Camera
             : UnityEngine.Camera.main?.transform;
 
         public CameraViewMode ActiveMode => _activeMode;
+        public CameraSettings Settings => _settings;
+
+        private float SensitivityX => _settings != null ? _settings.SensitivityX : _sensitivityX;
+        private float SensitivityY => _settings != null ? _settings.SensitivityY : _sensitivityY;
+        private bool InvertY => _settings != null ? _settings.InvertY : _invertY;
+        private float MaxLookAngle => _settings != null ? _settings.MaxLookAngle : _maxLookAngle;
+        private float RotationSmoothTime => _settings != null ? _settings.RotationSmoothTime : _rotationSmoothTime;
+        private Vector3 FirstPersonLocalOffset => _settings != null ? _settings.FirstPersonLocalOffset : _firstPersonLocalOffset;
+        private float ThirdPersonDistance => _settings != null ? _settings.ThirdPersonDistance : _thirdPersonDistance;
+        private float ThirdPersonHeightOffset => _settings != null ? _settings.ThirdPersonHeightOffset : _thirdPersonHeightOffset;
+        private float ThirdPersonCollisionRadius => _settings != null ? _settings.ThirdPersonCollisionRadius : _thirdPersonCollisionRadius;
+        private LayerMask CameraCollisionMask => _settings != null ? _settings.CameraCollisionMask : _cameraCollisionMask;
+        private float ModeTransitionTime => _settings != null ? _settings.ModeTransitionTime : _modeTransitionTime;
+        private CameraViewMode StartupMode => _settings != null ? _settings.StartupMode : _startupMode;
 
         public Vector3 Forward
         {
@@ -87,7 +103,7 @@ namespace GlitchWorker.Camera
             if (_cameraTransform == null)
                 _cameraTransform = GetComponentInChildren<UnityEngine.Camera>()?.transform;
 
-            _activeMode = _startupMode;
+            _activeMode = StartupMode;
             _thirdPersonWeight = _activeMode == CameraViewMode.ThirdPerson ? 1f : 0f;
         }
 
@@ -99,7 +115,8 @@ namespace GlitchWorker.Camera
 
         public void HandleLook(Vector2 lookInput, Transform playerTransform)
         {
-            if (_cameraTransform == null || playerTransform == null)
+            Transform cameraTf = ActiveCameraTransform;
+            if (cameraTf == null || playerTransform == null)
                 return;
 
             float dt = Time.unscaledDeltaTime;
@@ -108,14 +125,14 @@ namespace GlitchWorker.Camera
             if (_activeMode != CameraViewMode.Cinematic)
             {
                 float timeScaleCompensation = Time.timeScale > 0.001f ? (1f / Time.timeScale) : 1f;
-                _targetYaw += lookInput.x * _sensitivityX * timeScaleCompensation;
+                _targetYaw += lookInput.x * SensitivityX * timeScaleCompensation;
 
-                float invert = _invertY ? 1f : -1f;
-                _targetPitch += lookInput.y * _sensitivityY * timeScaleCompensation * invert;
-                _targetPitch = Mathf.Clamp(_targetPitch, -_maxLookAngle, _maxLookAngle);
+                float invert = InvertY ? 1f : -1f;
+                _targetPitch += lookInput.y * SensitivityY * timeScaleCompensation * invert;
+                _targetPitch = Mathf.Clamp(_targetPitch, -MaxLookAngle, MaxLookAngle);
             }
 
-            float rotSmooth = Mathf.Max(0.0001f, _rotationSmoothTime);
+            float rotSmooth = Mathf.Max(0.0001f, RotationSmoothTime);
             _smoothedYaw = Mathf.SmoothDampAngle(_smoothedYaw, _targetYaw, ref _yawVelocity, rotSmooth, Mathf.Infinity, dt);
             _smoothedPitch = Mathf.SmoothDampAngle(_smoothedPitch, _targetPitch, ref _pitchVelocity, rotSmooth, Mathf.Infinity, dt);
 
@@ -129,29 +146,29 @@ namespace GlitchWorker.Camera
                 _thirdPersonWeight,
                 thirdPersonTarget,
                 ref _thirdPersonWeightVelocity,
-                _modeTransitionTime,
+                ModeTransitionTime,
                 Mathf.Infinity,
                 dt);
 
             if (_activeMode == CameraViewMode.Cinematic && _cinematicTransform != null)
             {
-                float t = 1f - Mathf.Exp(-dt / Mathf.Max(0.0001f, _modeTransitionTime));
-                _cameraTransform.position = Vector3.Lerp(_cameraTransform.position, _cinematicTransform.position, t);
-                _cameraTransform.rotation = Quaternion.Slerp(_cameraTransform.rotation, _cinematicTransform.rotation, t);
+                float t = 1f - Mathf.Exp(-dt / Mathf.Max(0.0001f, ModeTransitionTime));
+                cameraTf.position = Vector3.Lerp(cameraTf.position, _cinematicTransform.position, t);
+                cameraTf.rotation = Quaternion.Slerp(cameraTf.rotation, _cinematicTransform.rotation, t);
                 return;
             }
 
-            Vector3 firstPersonPosition = playerTransform.TransformPoint(_firstPersonLocalOffset);
+            Vector3 firstPersonPosition = playerTransform.TransformPoint(FirstPersonLocalOffset);
             Quaternion firstPersonRotation = Quaternion.Euler(_smoothedPitch, _smoothedYaw, 0f);
 
-            Vector3 pivot = playerTransform.position + Vector3.up * _thirdPersonHeightOffset;
+            Vector3 pivot = playerTransform.position + Vector3.up * ThirdPersonHeightOffset;
             Quaternion orbit = Quaternion.Euler(_smoothedPitch, _smoothedYaw, 0f);
-            Vector3 thirdPersonPosition = pivot - (orbit * Vector3.forward * _thirdPersonDistance);
+            Vector3 thirdPersonPosition = pivot - (orbit * Vector3.forward * ThirdPersonDistance);
             thirdPersonPosition = ResolveCameraCollision(pivot, thirdPersonPosition);
             Quaternion thirdPersonRotation = Quaternion.LookRotation((pivot - thirdPersonPosition).normalized, Vector3.up);
 
-            _cameraTransform.position = Vector3.Lerp(firstPersonPosition, thirdPersonPosition, _thirdPersonWeight);
-            _cameraTransform.rotation = Quaternion.Slerp(firstPersonRotation, thirdPersonRotation, _thirdPersonWeight);
+            cameraTf.position = Vector3.Lerp(firstPersonPosition, thirdPersonPosition, _thirdPersonWeight);
+            cameraTf.rotation = Quaternion.Slerp(firstPersonRotation, thirdPersonRotation, _thirdPersonWeight);
         }
 
         public void ToggleFirstThirdPerson()
@@ -159,9 +176,9 @@ namespace GlitchWorker.Camera
             if (_activeMode == CameraViewMode.Cinematic)
                 return;
 
-            _activeMode = _activeMode == CameraViewMode.FirstPerson
+            SetActiveMode(_activeMode == CameraViewMode.FirstPerson
                 ? CameraViewMode.ThirdPerson
-                : CameraViewMode.FirstPerson;
+                : CameraViewMode.FirstPerson);
         }
 
         public void EnterCinematic(Transform cameraPoint, CinematicCameraZone zone = null)
@@ -172,7 +189,10 @@ namespace GlitchWorker.Camera
 
             _cinematicTransform = cameraPoint;
             _activeZone = zone;
-            _activeMode = CameraViewMode.Cinematic;
+            if (SetActiveMode(CameraViewMode.Cinematic))
+            {
+                GameEventBus.RaiseCinematicEntered(cameraPoint);
+            }
         }
 
         public void ExitCinematic(CinematicCameraZone zone = null)
@@ -182,9 +202,24 @@ namespace GlitchWorker.Camera
             if (zone != null && zone != _activeZone)
                 return;
 
+            CameraViewMode restoredMode = _modeBeforeCinematic;
             _cinematicTransform = null;
             _activeZone = null;
-            _activeMode = _modeBeforeCinematic;
+            if (SetActiveMode(restoredMode))
+            {
+                GameEventBus.RaiseCinematicExited(restoredMode);
+            }
+        }
+
+        private bool SetActiveMode(CameraViewMode nextMode)
+        {
+            if (_activeMode == nextMode)
+                return false;
+
+            CameraViewMode previousMode = _activeMode;
+            _activeMode = nextMode;
+            GameEventBus.RaiseCameraViewModeChanged(previousMode, nextMode);
+            return true;
         }
 
         private Vector3 ResolveCameraCollision(Vector3 pivot, Vector3 desiredPosition)
@@ -196,14 +231,14 @@ namespace GlitchWorker.Camera
             dir /= dist;
             if (Physics.SphereCast(
                 pivot,
-                _thirdPersonCollisionRadius,
+                ThirdPersonCollisionRadius,
                 dir,
                 out RaycastHit hit,
                 dist,
-                _cameraCollisionMask,
+                CameraCollisionMask,
                 QueryTriggerInteraction.Ignore))
             {
-                return pivot + dir * Mathf.Max(0.05f, hit.distance - _thirdPersonCollisionRadius);
+                return pivot + dir * Mathf.Max(0.05f, hit.distance - ThirdPersonCollisionRadius);
             }
 
             return desiredPosition;

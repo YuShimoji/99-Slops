@@ -15,6 +15,9 @@ namespace GlitchWorker.Systems
             GameEventBus.BeamGrabbed += OnBeamGrabbed;
             GameEventBus.BeamReleased += OnBeamReleased;
             GameEventBus.BeamThrown += OnBeamThrown;
+            GameEventBus.CameraViewModeChanged += OnCameraViewModeChanged;
+            GameEventBus.CinematicEntered += OnCinematicEntered;
+            GameEventBus.CinematicExited += OnCinematicExited;
         }
 
         private void OnDisable()
@@ -24,6 +27,9 @@ namespace GlitchWorker.Systems
             GameEventBus.BeamGrabbed -= OnBeamGrabbed;
             GameEventBus.BeamReleased -= OnBeamReleased;
             GameEventBus.BeamThrown -= OnBeamThrown;
+            GameEventBus.CameraViewModeChanged -= OnCameraViewModeChanged;
+            GameEventBus.CinematicEntered -= OnCinematicEntered;
+            GameEventBus.CinematicExited -= OnCinematicExited;
         }
 
         private static void OnDebugViewToggled(bool isActive)
@@ -56,6 +62,22 @@ namespace GlitchWorker.Systems
             string bodyName = body != null ? body.name : "null";
             string propName = prop != null ? prop.name : "none";
             Debug.Log($"[GameEventBus] BeamThrown: body={bodyName}, prop={propName}");
+        }
+
+        private static void OnCameraViewModeChanged(GlitchWorker.Camera.CameraViewMode previousMode, GlitchWorker.Camera.CameraViewMode nextMode)
+        {
+            Debug.Log($"[GameEventBus] CameraViewModeChanged: {previousMode} -> {nextMode}");
+        }
+
+        private static void OnCinematicEntered(Transform point)
+        {
+            string pointName = point != null ? point.name : "null";
+            Debug.Log($"[GameEventBus] CinematicEntered: point={pointName}");
+        }
+
+        private static void OnCinematicExited(GlitchWorker.Camera.CameraViewMode restoredMode)
+        {
+            Debug.Log($"[GameEventBus] CinematicExited: restore={restoredMode}");
         }
     }
 }

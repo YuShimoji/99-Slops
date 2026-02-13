@@ -43,3 +43,17 @@
 
 ## 注意
 - `AI_CONTEXT.md` と `CLAUDE.md` が文字化けして見える可能性あり (エンコーディング再整備の余地)
+
+## 次タスクチェックリスト (2026-02-13)
+1. TASK_015_Phase2A_ResumeChecklist.md を基準に再開確認を固定
+   - Sandbox.unity の Camera 配線確認
+   - InputSystem_Actions の割当確認
+2. TASK_013_CameraSettings_SO.md に着手
+   - CameraSettings ScriptableObject を定義
+   - CameraManager の参照先を Settings 経由に統一
+3. TASK_014_GameEvents_Camera.md に着手
+   - CameraViewModeChanged, CinematicEntered, CinematicExited を Event 化
+   - GameEventDebugLogger で発火検証
+4. 受け入れ確認
+   - PlayMode で 1P/3P 切替と視点回転、衝突回避を確認
+   - Event 重複発火がないことを確認

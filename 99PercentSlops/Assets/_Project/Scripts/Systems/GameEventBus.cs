@@ -1,4 +1,5 @@
 using System;
+using GlitchWorker.Camera;
 using GlitchWorker.Props;
 using UnityEngine;
 
@@ -14,6 +15,9 @@ namespace GlitchWorker.Systems
         public static event Action<Rigidbody, PropBase> BeamGrabbed;
         public static event Action<Rigidbody, PropBase> BeamReleased;
         public static event Action<Rigidbody, PropBase> BeamThrown;
+        public static event Action<CameraViewMode, CameraViewMode> CameraViewModeChanged;
+        public static event Action<Transform> CinematicEntered;
+        public static event Action<CameraViewMode> CinematicExited;
 
         public static void RaiseDebugViewToggled(bool isActive)
         {
@@ -38,6 +42,22 @@ namespace GlitchWorker.Systems
         public static void RaiseBeamThrown(Rigidbody thrownBody, PropBase thrownProp)
         {
             BeamThrown?.Invoke(thrownBody, thrownProp);
+        }
+
+        public static void RaiseCameraViewModeChanged(CameraViewMode previousMode, CameraViewMode nextMode)
+        {
+            if (previousMode == nextMode) return;
+            CameraViewModeChanged?.Invoke(previousMode, nextMode);
+        }
+
+        public static void RaiseCinematicEntered(Transform cinematicPoint)
+        {
+            CinematicEntered?.Invoke(cinematicPoint);
+        }
+
+        public static void RaiseCinematicExited(CameraViewMode restoredMode)
+        {
+            CinematicExited?.Invoke(restoredMode);
         }
     }
 }
