@@ -20,3 +20,9 @@ standard
 
 ## Backlog
 なし
+
+## タスク管理（短期/中期/長期）
+
+### 短期（Next）
+
+- [done] 未完了タスクなし（docs/tasks/ に OPEN / IN_PROGRESS なし）
