@@ -1,4 +1,5 @@
 using System;
+using GlitchWorker.Camera;
 using GlitchWorker.Props;
 using UnityEngine;
 
@@ -38,6 +39,26 @@ namespace GlitchWorker.Systems
         public static void RaiseBeamThrown(Rigidbody thrownBody, PropBase thrownProp)
         {
             BeamThrown?.Invoke(thrownBody, thrownProp);
+        }
+
+        // ── Camera Events ──────────────────────────────────────
+        public static event Action<CameraViewMode, CameraViewMode> CameraViewModeChanged;
+        public static event Action<Transform> CinematicEntered;
+        public static event Action CinematicExited;
+
+        public static void RaiseCameraViewModeChanged(CameraViewMode previousMode, CameraViewMode newMode)
+        {
+            CameraViewModeChanged?.Invoke(previousMode, newMode);
+        }
+
+        public static void RaiseCinematicEntered(Transform cinematicPoint)
+        {
+            CinematicEntered?.Invoke(cinematicPoint);
+        }
+
+        public static void RaiseCinematicExited()
+        {
+            CinematicExited?.Invoke();
         }
     }
 }

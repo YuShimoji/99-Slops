@@ -1,4 +1,5 @@
 using GlitchWorker.Player;
+using GlitchWorker.Systems;
 using UnityEngine;
 
 namespace GlitchWorker.Camera
@@ -159,20 +160,25 @@ namespace GlitchWorker.Camera
             if (_activeMode == CameraViewMode.Cinematic)
                 return;
 
+            CameraViewMode previousMode = _activeMode;
             _activeMode = _activeMode == CameraViewMode.FirstPerson
                 ? CameraViewMode.ThirdPerson
                 : CameraViewMode.FirstPerson;
+
+            GameEventBus.RaiseCameraViewModeChanged(previousMode, _activeMode);
         }
 
         public void EnterCinematic(Transform cameraPoint, CinematicCameraZone zone = null)
         {
             if (cameraPoint == null) return;
-            if (_activeMode != CameraViewMode.Cinematic)
-                _modeBeforeCinematic = _activeMode;
+            if (_activeMode == CameraViewMode.Cinematic) return;
 
+            _modeBeforeCinematic = _activeMode;
             _cinematicTransform = cameraPoint;
             _activeZone = zone;
             _activeMode = CameraViewMode.Cinematic;
+
+            GameEventBus.RaiseCinematicEntered(cameraPoint);
         }
 
         public void ExitCinematic(CinematicCameraZone zone = null)
@@ -185,6 +191,8 @@ namespace GlitchWorker.Camera
             _cinematicTransform = null;
             _activeZone = null;
             _activeMode = _modeBeforeCinematic;
+
+            GameEventBus.RaiseCinematicExited();
         }
 
         private Vector3 ResolveCameraCollision(Vector3 pivot, Vector3 desiredPosition)
