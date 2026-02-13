@@ -1,7 +1,7 @@
 # TASK_014_GameEvents_Camera
 
 ## Status
-OPEN
+DONE
 
 ## Tier / Branch
 - Tier: 1 (Core)
