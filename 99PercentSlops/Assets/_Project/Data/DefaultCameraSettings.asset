@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00000000000000000000000000000000, type: 0}
+  m_Name: DefaultCameraSettings
+  m_EditorClassIdentifier: 
+  _sensitivityX: 2
+  _sensitivityY: 2
+  _invertY: 0
+  _maxLookAngle: 80
+  _rotationSmoothTime: 0.06
+  _firstPersonLocalOffset: {x: 0, y: 0.8, z: 0}
+  _thirdPersonDistance: 3.2
+  _thirdPersonHeightOffset: 1.6
+  _thirdPersonCollisionRadius: 0.2
+  _cameraCollisionMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  _modeTransitionTime: 0.22
+  _startupMode: 0

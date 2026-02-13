@@ -15,33 +15,49 @@ namespace GlitchWorker.Camera
     /// - smoothed look
     /// - 1P/3P transition
     /// - cinematic override by trigger zone
+    /// Settings are loaded from CameraSettings ScriptableObject.
     /// </summary>
     public class CameraManager : MonoBehaviour
     {
         public static CameraManager Instance { get; private set; }
 
+        [Header("Settings")]
+        [Tooltip("Camera設定アセット（未設定時はデフォルト値を使用）")]
+        [SerializeField] private CameraSettings _settings;
+
         [Header("References")]
         [SerializeField] private Transform _cameraTransform;
 
-        [Header("Look")]
-        [SerializeField] private float _sensitivityX = 2f;
-        [SerializeField] private float _sensitivityY = 2f;
-        [SerializeField] private bool _invertY;
-        [SerializeField] private float _maxLookAngle = 80f;
-        [SerializeField, Min(0f)] private float _rotationSmoothTime = 0.06f;
+        // フォールバック用の内部デフォルト設定
+        private static class DefaultSettings
+        {
+            public const float SensitivityX = 2f;
+            public const float SensitivityY = 2f;
+            public const bool InvertY = false;
+            public const float MaxLookAngle = 80f;
+            public const float RotationSmoothTime = 0.06f;
+            public static readonly Vector3 FirstPersonLocalOffset = new Vector3(0f, 0.8f, 0f);
+            public const float ThirdPersonDistance = 3.2f;
+            public const float ThirdPersonHeightOffset = 1.6f;
+            public const float ThirdPersonCollisionRadius = 0.2f;
+            public static readonly LayerMask CameraCollisionMask = ~0;
+            public const float ModeTransitionTime = 0.22f;
+            public const CameraViewMode StartupMode = CameraViewMode.FirstPerson;
+        }
 
-        [Header("First Person")]
-        [SerializeField] private Vector3 _firstPersonLocalOffset = new Vector3(0f, 0.8f, 0f);
-
-        [Header("Third Person")]
-        [SerializeField, Min(0.1f)] private float _thirdPersonDistance = 3.2f;
-        [SerializeField, Min(0f)] private float _thirdPersonHeightOffset = 1.6f;
-        [SerializeField, Min(0f)] private float _thirdPersonCollisionRadius = 0.2f;
-        [SerializeField] private LayerMask _cameraCollisionMask = ~0;
-
-        [Header("Mode Transition")]
-        [SerializeField, Min(0.01f)] private float _modeTransitionTime = 0.22f;
-        [SerializeField] private CameraViewMode _startupMode = CameraViewMode.FirstPerson;
+        // Settingsプロキシプロパティ（未設定時はデフォルト値を返す）
+        private float SensitivityX => _settings?.SensitivityX ?? DefaultSettings.SensitivityX;
+        private float SensitivityY => _settings?.SensitivityY ?? DefaultSettings.SensitivityY;
+        private bool InvertY => _settings?.InvertY ?? DefaultSettings.InvertY;
+        private float MaxLookAngle => _settings?.MaxLookAngle ?? DefaultSettings.MaxLookAngle;
+        private float RotationSmoothTime => _settings?.RotationSmoothTime ?? DefaultSettings.RotationSmoothTime;
+        private Vector3 FirstPersonLocalOffset => _settings?.FirstPersonLocalOffset ?? DefaultSettings.FirstPersonLocalOffset;
+        private float ThirdPersonDistance => _settings?.ThirdPersonDistance ?? DefaultSettings.ThirdPersonDistance;
+        private float ThirdPersonHeightOffset => _settings?.ThirdPersonHeightOffset ?? DefaultSettings.ThirdPersonHeightOffset;
+        private float ThirdPersonCollisionRadius => _settings?.ThirdPersonCollisionRadius ?? DefaultSettings.ThirdPersonCollisionRadius;
+        private LayerMask CameraCollisionMask => _settings?.CameraCollisionMask ?? DefaultSettings.CameraCollisionMask;
+        private float ModeTransitionTime => _settings?.ModeTransitionTime ?? DefaultSettings.ModeTransitionTime;
+        private CameraViewMode StartupMode => _settings?.StartupMode ?? DefaultSettings.StartupMode;
 
         private float _targetYaw;
         private float _targetPitch;
@@ -87,7 +103,13 @@ namespace GlitchWorker.Camera
             if (_cameraTransform == null)
                 _cameraTransform = GetComponentInChildren<UnityEngine.Camera>()?.transform;
 
-            _activeMode = _startupMode;
+            // Settings検証
+            if (_settings != null)
+            {
+                _settings.Validate();
+            }
+
+            _activeMode = StartupMode;
             _thirdPersonWeight = _activeMode == CameraViewMode.ThirdPerson ? 1f : 0f;
         }
 
@@ -108,14 +130,14 @@ namespace GlitchWorker.Camera
             if (_activeMode != CameraViewMode.Cinematic)
             {
                 float timeScaleCompensation = Time.timeScale > 0.001f ? (1f / Time.timeScale) : 1f;
-                _targetYaw += lookInput.x * _sensitivityX * timeScaleCompensation;
+                _targetYaw += lookInput.x * SensitivityX * timeScaleCompensation;
 
-                float invert = _invertY ? 1f : -1f;
-                _targetPitch += lookInput.y * _sensitivityY * timeScaleCompensation * invert;
-                _targetPitch = Mathf.Clamp(_targetPitch, -_maxLookAngle, _maxLookAngle);
+                float invert = InvertY ? 1f : -1f;
+                _targetPitch += lookInput.y * SensitivityY * timeScaleCompensation * invert;
+                _targetPitch = Mathf.Clamp(_targetPitch, -MaxLookAngle, MaxLookAngle);
             }
 
-            float rotSmooth = Mathf.Max(0.0001f, _rotationSmoothTime);
+            float rotSmooth = Mathf.Max(0.0001f, RotationSmoothTime);
             _smoothedYaw = Mathf.SmoothDampAngle(_smoothedYaw, _targetYaw, ref _yawVelocity, rotSmooth, Mathf.Infinity, dt);
             _smoothedPitch = Mathf.SmoothDampAngle(_smoothedPitch, _targetPitch, ref _pitchVelocity, rotSmooth, Mathf.Infinity, dt);
 
@@ -129,24 +151,24 @@ namespace GlitchWorker.Camera
                 _thirdPersonWeight,
                 thirdPersonTarget,
                 ref _thirdPersonWeightVelocity,
-                _modeTransitionTime,
+                ModeTransitionTime,
                 Mathf.Infinity,
                 dt);
 
             if (_activeMode == CameraViewMode.Cinematic && _cinematicTransform != null)
             {
-                float t = 1f - Mathf.Exp(-dt / Mathf.Max(0.0001f, _modeTransitionTime));
+                float t = 1f - Mathf.Exp(-dt / Mathf.Max(0.0001f, ModeTransitionTime));
                 _cameraTransform.position = Vector3.Lerp(_cameraTransform.position, _cinematicTransform.position, t);
                 _cameraTransform.rotation = Quaternion.Slerp(_cameraTransform.rotation, _cinematicTransform.rotation, t);
                 return;
             }
 
-            Vector3 firstPersonPosition = playerTransform.TransformPoint(_firstPersonLocalOffset);
+            Vector3 firstPersonPosition = playerTransform.TransformPoint(FirstPersonLocalOffset);
             Quaternion firstPersonRotation = Quaternion.Euler(_smoothedPitch, _smoothedYaw, 0f);
 
-            Vector3 pivot = playerTransform.position + Vector3.up * _thirdPersonHeightOffset;
+            Vector3 pivot = playerTransform.position + Vector3.up * ThirdPersonHeightOffset;
             Quaternion orbit = Quaternion.Euler(_smoothedPitch, _smoothedYaw, 0f);
-            Vector3 thirdPersonPosition = pivot - (orbit * Vector3.forward * _thirdPersonDistance);
+            Vector3 thirdPersonPosition = pivot - (orbit * Vector3.forward * ThirdPersonDistance);
             thirdPersonPosition = ResolveCameraCollision(pivot, thirdPersonPosition);
             Quaternion thirdPersonRotation = Quaternion.LookRotation((pivot - thirdPersonPosition).normalized, Vector3.up);
 
@@ -196,14 +218,14 @@ namespace GlitchWorker.Camera
             dir /= dist;
             if (Physics.SphereCast(
                 pivot,
-                _thirdPersonCollisionRadius,
+                ThirdPersonCollisionRadius,
                 dir,
                 out RaycastHit hit,
                 dist,
-                _cameraCollisionMask,
+                CameraCollisionMask,
                 QueryTriggerInteraction.Ignore))
             {
-                return pivot + dir * Mathf.Max(0.05f, hit.distance - _thirdPersonCollisionRadius);
+                return pivot + dir * Mathf.Max(0.05f, hit.distance - ThirdPersonCollisionRadius);
             }
 
             return desiredPosition;
