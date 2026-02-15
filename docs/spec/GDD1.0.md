@@ -1,10 +1,17 @@
 # Project GLITCH-WORKER — Game Design Document v1.0
 
-**プロジェクトコード**: GLITCH-WORKER  
-**ジャンル**: グリッチ・イマーシブシム（物理演算探索アクション）  
-**プラットフォーム**: PC (Steam) / Early Access想定  
-**プレイ人数**: シングルプレイヤー  
-**ドキュメントバージョン**: 1.0  
+> **文書ステータス: 大型 Instance**
+> 本文書は `SSOT_CORE_DOCTRINE.md` の下位に位置する。
+> ここに記載された断定が SSOT_CORE_DOCTRINE の Invariants と矛盾する場合、
+> **SSOT_CORE_DOCTRINE を優先** し、本文書側を修正すること。
+> 本文書の記述は Invariant / Dial / Instance / Test への分類が未完了であり、
+> 今後 GDD1.0a として Instance 化改訂を行う予定。
+
+**プロジェクトコード**: GLITCH-WORKER
+**ジャンル**: グリッチ・イマーシブシム（物理演算探索アクション）
+**プラットフォーム**: PC (Steam) / Early Access想定
+**プレイ人数**: シングルプレイヤー
+**ドキュメントバージョン**: 1.0
 **最終更新日**: 2026-02-08  
 
 ---

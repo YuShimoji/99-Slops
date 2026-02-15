@@ -1,9 +1,9 @@
 # GLITCH-WORKER 開発ロードマップ v2
 
-**作成日**: 2026-02-08  
-**最終更新**: 2026-02-09  
-**前版**: docs/dev/ROADMAP.md (v1)  
-**基準文書**: docs/spec/GDD1.0.md, docs/spec/CAMERA_SYSTEM.md, docs/spec/PLAYER_CONTROL_SYSTEM.md  
+**作成日**: 2026-02-08
+**最終更新**: 2026-02-15
+**前版**: docs/dev/ROADMAP.md (v1)
+**基準文書**: docs/spec/SSOT_CORE_DOCTRINE.md（憲章）, docs/spec/GDD1.0.md（大型 Instance）, docs/spec/CAMERA_SYSTEM.md, docs/spec/PLAYER_CONTROL_SYSTEM.md
 **変更理由**: カメラシステム・プレイヤー操作の仕様追加に伴うフェーズ再構成
 
 ---

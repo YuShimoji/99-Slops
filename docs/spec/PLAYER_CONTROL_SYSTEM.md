@@ -1,10 +1,15 @@
 # プレイヤーコントロール仕様書
 
-**ドキュメントバージョン**: 1.1  
-**作成日**: 2026-02-08  
-**最終更新**: 2026-02-09  
-**基準文書**: docs/spec/GDD1.0.md  
-**関連文書**: docs/spec/CAMERA_SYSTEM.md  
+> **文書ステータス: 実装仕様 Instance**
+> 本文書は `SSOT_CORE_DOCTRINE.md` > `GDD1.0.md` の下位に位置する実装仕様である。
+> 体験の不変条件（SSOT_CORE_DOCTRINE §1--§3）と矛盾する場合、**SSOT_CORE_DOCTRINE を優先**。
+> 本文書の具体的パラメータ・入力割当・モード定義は Instance（現段階の標準案）として扱う。
+
+**ドキュメントバージョン**: 1.1
+**作成日**: 2026-02-08
+**最終更新**: 2026-02-09
+**基準文書**: docs/spec/SSOT_CORE_DOCTRINE.md, docs/spec/GDD1.0.md
+**関連文書**: docs/spec/CAMERA_SYSTEM.md
 **ステータス**: GAP 分析反映済み（実装と整合確認完了）
 
 ---
