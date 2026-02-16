@@ -1,59 +1,59 @@
-# ÄŠJ—pƒTƒ}ƒŠ (2026-02-12)
+# å†é–‹ç”¨ã‚µãƒãƒª (2026-02-12)
 
-## Œ»İ‚Ìi’» (ÅIXV 2026-02-10)
-- ƒŠƒ|ƒWƒgƒŠÅVƒRƒ~ƒbƒg: d239632 "Fix input/grounding and sync sandbox scene"
-- Phase 1: Scaffold Š®—¹
+## ç¾åœ¨ã®é€²æ— (æœ€çµ‚æ›´æ–° 2026-02-10)
+- ãƒªãƒã‚¸ãƒˆãƒªæœ€æ–°ã‚³ãƒŸãƒƒãƒˆ: d239632 "Fix input/grounding and sync sandbox scene"
+- Phase 1: Scaffold å®Œäº†
   - Player/Drone/Props/GlitchCannon/GameManager/DebugView
-  - Sandbox ƒV[ƒ“‚ÌŠî–{“®ì
-- Phase 2A: Camera & Foundation •”•ª“I‚ÉÀ‘•Ï‚İ
-  - `CameraManager` ‚É 1P/3P Ø‘ÖAƒXƒ€[ƒWƒ“ƒOAÕ“Ë‰ñ”ğACinematic Ø‘Ö‚Ìd‘g‚İ
-  - `PlayerController` ‚©‚ç `CameraManager.HandleLook()` ‚Æ 1P/3P Ø‘Ö“ü—Í‚ªÚ‘±Ï‚İ
-- Phase 2B: Player Controls À‘•is’†
-  - `PlayerStateMachine` + •¡”ƒXƒe[ƒg
+  - Sandbox ã‚·ãƒ¼ãƒ³ã®åŸºæœ¬å‹•ä½œ
+- Phase 2A: Camera & Foundation éƒ¨åˆ†çš„ã«å®Ÿè£…æ¸ˆã¿
+  - `CameraManager` ã« 1P/3P åˆ‡æ›¿ã€ã‚¹ãƒ ãƒ¼ã‚¸ãƒ³ã‚°ã€è¡çªå›é¿ã€Cinematic åˆ‡æ›¿ã®ä»•çµ„ã¿
+  - `PlayerController` ã‹ã‚‰ `CameraManager.HandleLook()` ã¨ 1P/3P åˆ‡æ›¿å…¥åŠ›ãŒæ¥ç¶šæ¸ˆã¿
+- Phase 2B: Player Controls å®Ÿè£…é€²è¡Œä¸­
+  - `PlayerStateMachine` + è¤‡æ•°ã‚¹ãƒ†ãƒ¼ãƒˆ
   - `PlayerMovement` / `PlayerJump` / `PlayerStats` / `InputBuffer` / `PlayerSlowMotion`
-- Sandbox ƒV[ƒ“: `Assets/_Project/Scenes/Sandbox.unity`
+- Sandbox ã‚·ãƒ¼ãƒ³: `Assets/_Project/Scenes/Sandbox.unity`
 
-## ’¼‹ß‚ÅŠm”F‚·‚×‚«‚±‚Æ
-- `Sandbox.unity` ‚É `CameraManager` ‚ª‘¶İ‚µ‚Ä‚¢‚é‚© (”z’uÏ‚İ)
-- `InputSystem_Actions.inputactions` ‚ª `PlayerInput` ‚ÉŠ„“–Ï‚İ‚©
-- CinematicCameraZone ‚Í–¢”z’u (•K—v‚È‚ç’Ç‰Á)
+## ç›´è¿‘ã§ç¢ºèªã™ã¹ãã“ã¨
+- `Sandbox.unity` ã« `CameraManager` ãŒå­˜åœ¨ã—ã¦ã„ã‚‹ã‹ (é…ç½®æ¸ˆã¿)
+- `InputSystem_Actions.inputactions` ãŒ `PlayerInput` ã«å‰²å½“æ¸ˆã¿ã‹
+- CinematicCameraZone ã¯æœªé…ç½® (å¿…è¦ãªã‚‰è¿½åŠ )
 
-## ÄŠJè‡ (Å’Z)
-1. Unity 6000.x LTS (URP) ‚Å `99PercentSlops` ƒvƒƒWƒFƒNƒg‚ğŠJ‚­
-2. `Assets/_Project/Scenes/Sandbox.unity` ‚ğŠJ‚­
-3. Play ‚ÅŠî–{‹““®‚ğŠm”F
-   - `WASD` + `Space` ‚ÅˆÚ“®/ƒWƒƒƒ“ƒv
-   - ƒ}ƒEƒX‚Å‹“_
-   - `V` ‚Å 1P/3P Ø‘Ö
-   - `LeftCtrl` DashA`LeftShift` FastFall (İ’èÏ‚İ‚Ìê‡)
-4. –â‘è‚ª‚ ‚ê‚Î `PlayerController` ‚Æ `CameraManager` ‚ÌÚ‘±‚ğŠm”F
+## å†é–‹æ‰‹é † (æœ€çŸ­)
+1. Unity 6000.x LTS (URP) ã§ `99PercentSlops` ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆã‚’é–‹ã
+2. `Assets/_Project/Scenes/Sandbox.unity` ã‚’é–‹ã
+3. Play ã§åŸºæœ¬æŒ™å‹•ã‚’ç¢ºèª
+   - `WASD` + `Space` ã§ç§»å‹•/ã‚¸ãƒ£ãƒ³ãƒ—
+   - ãƒã‚¦ã‚¹ã§è¦–ç‚¹
+   - `V` ã§ 1P/3P åˆ‡æ›¿
+   - `LeftCtrl` Dashã€`LeftShift` FastFallã€`F3` DebugView ãƒˆã‚°ãƒ«
+4. å•é¡ŒãŒã‚ã‚Œã° `PlayerController` ã¨ `CameraManager` ã®æ¥ç¶šã‚’ç¢ºèª
 
-## Ÿ‚ÌŠJ”­—\’è („§‡)
-1. Phase 2A cƒ^ƒXƒN
-   - 1P/3P ‚Ìƒpƒ‰ƒ[ƒ^ÅI’²® (Šù‘¶ `CameraManager` ‚ÌŒŸØ)
-   - 1P/3P Ø‘Ö UX ‚Ì’²® (Š´“x/FOV/“ü—Í)
-   - `CameraSettings` ScriptableObject ‰»
-   - `GameEvents` “±“ü
-   - ƒhƒLƒ…ƒƒ“ƒgXV
+## æ¬¡ã®é–‹ç™ºäºˆå®š (æ¨å¥¨é †)
+1. Phase 2A æ®‹ã‚¿ã‚¹ã‚¯
+   - 1P/3P ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æœ€çµ‚èª¿æ•´ (æ—¢å­˜ `CameraManager` ã®æ¤œè¨¼)
+   - 1P/3P åˆ‡æ›¿ UX ã®èª¿æ•´ (æ„Ÿåº¦/FOV/å…¥åŠ›)
+   - `CameraSettings` ScriptableObject åŒ–
+   - `GameEvents` å°å…¥
+   - ãƒ‰ã‚­ãƒ¥ãƒ¡ãƒ³ãƒˆæ›´æ–°
 2. Phase 2B
-   - 3P ‚ÌˆÚ“®•ûŒü/“ü—Í‚Ì®‡
-   - InputActions/PhysicsMaterial ‚Ìdã‚°
-3. Phase 3 ˆÈ~
-   - VFX / DebugView / AI s“®
+   - 3P ã®ç§»å‹•æ–¹å‘/å…¥åŠ›ã®æ•´åˆ
+   - InputActions/PhysicsMaterial ã®ä»•ä¸Šã’
+3. Phase 3 ä»¥é™
+   - VFX / DebugView / AI è¡Œå‹•
 
-## ’ˆÓ
-- `AI_CONTEXT.md` ‚Æ `CLAUDE.md` ‚ª•¶š‰»‚¯‚µ‚ÄŒ©‚¦‚é‰Â”\«‚ ‚è (ƒGƒ“ƒR[ƒfƒBƒ“ƒOÄ®”õ‚Ì—]’n)
+## æ³¨æ„
+- `AI_CONTEXT.md` ã¨ `CLAUDE.md` ãŒæ–‡å­—åŒ–ã‘ã—ã¦è¦‹ãˆã‚‹å¯èƒ½æ€§ã‚ã‚Š (ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°å†æ•´å‚™ã®ä½™åœ°)
 
-## Ÿƒ^ƒXƒNƒ`ƒFƒbƒNƒŠƒXƒg (2026-02-13)
-1. TASK_015_Phase2A_ResumeChecklist.md ‚ğŠî€‚ÉÄŠJŠm”F‚ğŒÅ’è
-   - Sandbox.unity ‚Ì Camera ”züŠm”F
-   - InputSystem_Actions ‚ÌŠ„“–Šm”F
-2. TASK_013_CameraSettings_SO.md ‚É’…è
-   - CameraSettings ScriptableObject ‚ğ’è‹`
-   - CameraManager ‚ÌQÆæ‚ğ Settings Œo—R‚É“ˆê
-3. TASK_014_GameEvents_Camera.md ‚É’…è
-   - CameraViewModeChanged, CinematicEntered, CinematicExited ‚ğ Event ‰»
-   - GameEventDebugLogger ‚Å”­‰ÎŒŸØ
-4. ó‚¯“ü‚êŠm”F
-   - PlayMode ‚Å 1P/3P Ø‘Ö‚Æ‹“_‰ñ“]AÕ“Ë‰ñ”ğ‚ğŠm”F
-   - Event d•¡”­‰Î‚ª‚È‚¢‚±‚Æ‚ğŠm”F
+## æ¬¡ã‚¿ã‚¹ã‚¯ãƒã‚§ãƒƒã‚¯ãƒªã‚¹ãƒˆ (2026-02-13)
+1. TASK_015_Phase2A_ResumeChecklist.md ã‚’åŸºæº–ã«å†é–‹ç¢ºèªã‚’å›ºå®š
+   - Sandbox.unity ã® Camera é…ç·šç¢ºèª
+   - InputSystem_Actions ã®å‰²å½“ç¢ºèª
+2. TASK_013_CameraSettings_SO.md ã«ç€æ‰‹
+   - CameraSettings ScriptableObject ã‚’å®šç¾©
+   - CameraManager ã®å‚ç…§å…ˆã‚’ Settings çµŒç”±ã«çµ±ä¸€
+3. TASK_014_GameEvents_Camera.md ã«ç€æ‰‹
+   - CameraViewModeChanged, CinematicEntered, CinematicExited ã‚’ Event åŒ–
+   - GameEventDebugLogger ã§ç™ºç«æ¤œè¨¼
+4. å—ã‘å…¥ã‚Œç¢ºèª
+   - PlayMode ã§ 1P/3P åˆ‡æ›¿ã¨è¦–ç‚¹å›è»¢ã€è¡çªå›é¿ã‚’ç¢ºèª
+   - Event é‡è¤‡ç™ºç«ãŒãªã„ã“ã¨ã‚’ç¢ºèª

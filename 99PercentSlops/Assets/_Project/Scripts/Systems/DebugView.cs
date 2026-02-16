@@ -18,7 +18,7 @@ namespace GlitchWorker.Systems
 
         public void OnSprint(InputValue value)
         {
-            // Repurpose Sprint (Left Shift) as Debug View toggle for prototype
+            // Repurpose Sprint (F3) as Debug View toggle for prototype
             if (value.isPressed)
             {
                 ToggleDebugView();
