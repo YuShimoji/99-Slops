@@ -575,9 +575,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3dcd6c7d47a8d6440958a419fd5a884e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GlitchWorker.Camera.CameraManager
-  _mouseSensitivity: 2
+  _cameraTransform: {fileID: 1951866340}
+  _settings: {fileID: 11400000, guid: 6d4ddf1d1f5f4f6fa3dbe97810d4ef05, type: 2}
+  _sensitivityX: 2
+  _sensitivityY: 2
+  _invertY: 0
   _maxLookAngle: 80
-  _cameraHolder: {fileID: 582743176}
+  _rotationSmoothTime: 0.06
+  _firstPersonLocalOffset: {x: 0, y: 0.8, z: 0}
+  _thirdPersonDistance: 3.2
+  _thirdPersonHeightOffset: 1.6
+  _thirdPersonCollisionRadius: 0.2
+  _cameraCollisionMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  _modeTransitionTime: 0.22
+  _startupMode: 0
 --- !u!4 &582743176
 Transform:
   m_ObjectHideFlags: 0
