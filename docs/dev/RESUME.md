@@ -1,4 +1,4 @@
-# 再開用サマリ (2026-02-12)
+# 再開用サマリ (2026-02-17)
 
 ## 現在の進捗 (最終更新 2026-02-10)
 - リポジトリ最新コミット: d239632 "Fix input/grounding and sync sandbox scene"
@@ -25,7 +25,7 @@
    - `WASD` + `Space` で移動/ジャンプ
    - マウスで視点
    - `V` で 1P/3P 切替
-   - `LeftCtrl` Dash、`LeftShift` FastFall、`F3` DebugView トグル
+   - `LeftCtrl` Dash、`LeftShift` FastFall、`F4` DebugView トグル
 4. 問題があれば `PlayerController` と `CameraManager` の接続を確認
 
 ## 次の開発予定 (推奨順)

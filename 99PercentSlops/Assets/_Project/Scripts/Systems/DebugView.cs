@@ -16,9 +16,9 @@ namespace GlitchWorker.Systems
 
         public bool IsActive => _isActive;
 
-        public void OnSprint(InputValue value)
+        public void OnToggleDebugView(InputValue value)
         {
-            // Repurpose Sprint (F3) as Debug View toggle for prototype
+            // Dedicated Debug View toggle (F4)
             if (value.isPressed)
             {
                 ToggleDebugView();

@@ -47,16 +47,23 @@ namespace GlitchWorker.Systems
         public static void RaiseCameraViewModeChanged(CameraViewMode previousMode, CameraViewMode nextMode)
         {
             if (previousMode == nextMode) return;
+            int listenerCount = CameraViewModeChanged?.GetInvocationList().Length ?? 0;
+            Debug.Log($"[GameEventBus] RaiseCameraViewModeChanged: {previousMode} -> {nextMode} (listeners: {listenerCount})");
             CameraViewModeChanged?.Invoke(previousMode, nextMode);
         }
 
         public static void RaiseCinematicEntered(Transform cinematicPoint)
         {
+            string pointName = cinematicPoint != null ? cinematicPoint.name : "null";
+            int listenerCount = CinematicEntered?.GetInvocationList().Length ?? 0;
+            Debug.Log($"[GameEventBus] RaiseCinematicEntered: {pointName} (listeners: {listenerCount})");
             CinematicEntered?.Invoke(cinematicPoint);
         }
 
         public static void RaiseCinematicExited(CameraViewMode restoredMode)
         {
+            int listenerCount = CinematicExited?.GetInvocationList().Length ?? 0;
+            Debug.Log($"[GameEventBus] RaiseCinematicExited: {restoredMode} (listeners: {listenerCount})");
             CinematicExited?.Invoke(restoredMode);
         }
     }

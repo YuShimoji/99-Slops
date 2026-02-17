@@ -8,8 +8,14 @@ namespace GlitchWorker.Systems
     /// </summary>
     public class GameEventDebugLogger : MonoBehaviour
     {
+        private void Awake()
+        {
+            Debug.Log($"[GameEventDebugLogger] Awake on '{gameObject.name}' in scene '{gameObject.scene.name}'");
+        }
+
         private void OnEnable()
         {
+            Debug.Log("[GameEventDebugLogger] OnEnable - subscribing to events");
             GameEventBus.DebugViewToggled += OnDebugViewToggled;
             GameEventBus.PropStateChanged += OnPropStateChanged;
             GameEventBus.BeamGrabbed += OnBeamGrabbed;

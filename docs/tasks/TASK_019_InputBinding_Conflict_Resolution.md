@@ -1,7 +1,15 @@
 # TASK_019_InputBinding_Conflict_Resolution
 
 ## Status
-OPEN
+
+CLOSED (2026-02-17)
+
+## Resolution
+
+- Added dedicated `ToggleDebugView` action bound to F4 key
+- Updated `DebugView.cs` to use `OnToggleDebugView` callback instead of `OnSprint`
+- FastFall remains on LeftShift with no conflict
+- Sprint (F3) is now independent from DebugView
 
 ## Tier / Branch
 - Tier: 1 (Core)
