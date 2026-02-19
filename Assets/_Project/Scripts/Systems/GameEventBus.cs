@@ -1,4 +1,5 @@
 using System;
+using GlitchWorker.Camera;
 using GlitchWorker.Props;
 using UnityEngine;
 
@@ -14,6 +15,7 @@ namespace GlitchWorker.Systems
         public static event Action<Rigidbody, PropBase> BeamGrabbed;
         public static event Action<Rigidbody, PropBase> BeamReleased;
         public static event Action<Rigidbody, PropBase> BeamThrown;
+        public static event Action<CameraViewMode, CameraViewMode> CameraModeChanged;
 
         public static void RaiseDebugViewToggled(bool isActive)
         {
@@ -38,6 +40,11 @@ namespace GlitchWorker.Systems
         public static void RaiseBeamThrown(Rigidbody thrownBody, PropBase thrownProp)
         {
             BeamThrown?.Invoke(thrownBody, thrownProp);
+        }
+
+        public static void RaiseCameraModeChanged(CameraViewMode previousMode, CameraViewMode newMode)
+        {
+            CameraModeChanged?.Invoke(previousMode, newMode);
         }
     }
 }

@@ -1,3 +1,4 @@
+using GlitchWorker.Camera;
 using GlitchWorker.Props;
 using UnityEngine;
 
@@ -15,6 +16,7 @@ namespace GlitchWorker.Systems
             GameEventBus.BeamGrabbed += OnBeamGrabbed;
             GameEventBus.BeamReleased += OnBeamReleased;
             GameEventBus.BeamThrown += OnBeamThrown;
+            GameEventBus.CameraModeChanged += OnCameraModeChanged;
         }
 
         private void OnDisable()
@@ -24,6 +26,7 @@ namespace GlitchWorker.Systems
             GameEventBus.BeamGrabbed -= OnBeamGrabbed;
             GameEventBus.BeamReleased -= OnBeamReleased;
             GameEventBus.BeamThrown -= OnBeamThrown;
+            GameEventBus.CameraModeChanged -= OnCameraModeChanged;
         }
 
         private static void OnDebugViewToggled(bool isActive)
@@ -56,6 +59,11 @@ namespace GlitchWorker.Systems
             string bodyName = body != null ? body.name : "null";
             string propName = prop != null ? prop.name : "none";
             Debug.Log($"[GameEventBus] BeamThrown: body={bodyName}, prop={propName}");
+        }
+
+        private static void OnCameraModeChanged(CameraViewMode previousMode, CameraViewMode newMode)
+        {
+            Debug.Log($"[GameEventBus] CameraModeChanged: {previousMode} -> {newMode}");
         }
     }
 }

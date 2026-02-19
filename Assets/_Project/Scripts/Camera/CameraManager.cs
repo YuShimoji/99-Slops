@@ -169,9 +169,12 @@ namespace GlitchWorker.Camera
             if (_activeMode == CameraViewMode.Cinematic)
                 return;
 
+            var previousMode = _activeMode;
             _activeMode = _activeMode == CameraViewMode.FirstPerson
                 ? CameraViewMode.ThirdPerson
                 : CameraViewMode.FirstPerson;
+
+            GlitchWorker.Systems.GameEventBus.RaiseCameraModeChanged(previousMode, _activeMode);
         }
 
         public void EnterCinematic(Transform cameraPoint, CinematicCameraZone zone = null)
@@ -180,8 +183,11 @@ namespace GlitchWorker.Camera
             if (_activeMode != CameraViewMode.Cinematic)
                 _modeBeforeCinematic = _activeMode;
 
+            var previousMode = _activeMode;
             _cinematicMode.Enter(cameraPoint, zone);
             _activeMode = CameraViewMode.Cinematic;
+
+            GlitchWorker.Systems.GameEventBus.RaiseCameraModeChanged(previousMode, _activeMode);
         }
 
         public void ExitCinematic(CinematicCameraZone zone = null)
@@ -191,8 +197,11 @@ namespace GlitchWorker.Camera
             if (zone != null && zone != _cinematicMode.ActiveZone)
                 return;
 
+            var previousMode = _activeMode;
             _cinematicMode.Exit();
             _activeMode = _modeBeforeCinematic;
+
+            GlitchWorker.Systems.GameEventBus.RaiseCameraModeChanged(previousMode, _activeMode);
         }
 
         // ── Internal helpers ──
