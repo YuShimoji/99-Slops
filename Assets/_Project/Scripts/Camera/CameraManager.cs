@@ -38,14 +38,29 @@ namespace GlitchWorker.Camera
 
         private CameraViewMode _activeMode;
         private CameraViewMode _modeBeforeCinematic;
+        private bool _modeInitialized;
 
         // ── Public API (unchanged) ──
 
-        public Transform ActiveCameraTransform => _cameraTransform != null
-            ? _cameraTransform
-            : UnityEngine.Camera.main?.transform;
+        public Transform ActiveCameraTransform
+        {
+            get
+            {
+                EnsureInitialized();
+                return _cameraTransform != null
+                    ? _cameraTransform
+                    : UnityEngine.Camera.main?.transform;
+            }
+        }
 
-        public CameraViewMode ActiveMode => _activeMode;
+        public CameraViewMode ActiveMode
+        {
+            get
+            {
+                EnsureInitialized();
+                return _activeMode;
+            }
+        }
 
         public Vector3 Forward
         {
@@ -69,19 +84,7 @@ namespace GlitchWorker.Camera
             }
 
             Instance = this;
-
-            if (_cameraTransform == null)
-                _cameraTransform = GetComponentInChildren<UnityEngine.Camera>()?.transform;
-
-            if (_settings == null)
-                _settings = CreateFallbackSettings();
-
-            _firstPersonMode = new FirstPersonMode();
-            _thirdPersonMode = new ThirdPersonMode();
-            _cinematicMode = new CinematicMode();
-
-            _activeMode = _settings.StartupMode;
-            _thirdPersonWeight = _activeMode == CameraViewMode.ThirdPerson ? 1f : 0f;
+            EnsureInitialized();
         }
 
         private void OnDestroy()
@@ -94,6 +97,8 @@ namespace GlitchWorker.Camera
 
         public void HandleLook(Vector2 lookInput, Transform playerTransform)
         {
+            EnsureInitialized();
+
             if (_cameraTransform == null || playerTransform == null)
                 return;
 
@@ -166,6 +171,8 @@ namespace GlitchWorker.Camera
 
         public void ToggleFirstThirdPerson()
         {
+            EnsureInitialized();
+
             if (_activeMode == CameraViewMode.Cinematic)
                 return;
 
@@ -179,6 +186,8 @@ namespace GlitchWorker.Camera
 
         public void EnterCinematic(Transform cameraPoint, CinematicCameraZone zone = null)
         {
+            EnsureInitialized();
+
             if (cameraPoint == null) return;
             if (_activeMode != CameraViewMode.Cinematic)
                 _modeBeforeCinematic = _activeMode;
@@ -192,6 +201,8 @@ namespace GlitchWorker.Camera
 
         public void ExitCinematic(CinematicCameraZone zone = null)
         {
+            EnsureInitialized();
+
             if (_activeMode != CameraViewMode.Cinematic)
                 return;
             if (zone != null && zone != _cinematicMode.ActiveZone)
@@ -211,6 +222,25 @@ namespace GlitchWorker.Camera
             var settings = ScriptableObject.CreateInstance<CameraSettings>();
             // Defaults match the original hardcoded values
             return settings;
+        }
+
+        private void EnsureInitialized()
+        {
+            if (_cameraTransform == null)
+                _cameraTransform = GetComponentInChildren<UnityEngine.Camera>()?.transform;
+
+            if (_settings == null)
+                _settings = CreateFallbackSettings();
+
+            _firstPersonMode ??= new FirstPersonMode();
+            _thirdPersonMode ??= new ThirdPersonMode();
+            _cinematicMode ??= new CinematicMode();
+
+            if (_modeInitialized) return;
+
+            _activeMode = _settings.StartupMode;
+            _thirdPersonWeight = _activeMode == CameraViewMode.ThirdPerson ? 1f : 0f;
+            _modeInitialized = true;
         }
     }
 }
