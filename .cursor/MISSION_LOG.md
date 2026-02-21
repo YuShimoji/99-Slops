@@ -3,7 +3,7 @@
 ## Basic
 - **Mission ID**: ORCH_20260212_1441
 - **Started At**: 2026-02-12T14:41:35+09:00
-- **Last Updated**: 2026-02-22T06:03:47+09:00
+- **Last Updated**: 2026-02-22T06:20:08+09:00
 - **Current Phase**: P6 (Orchestrator Report Preparation)
 - **Status**: IN_PROGRESS
 
@@ -18,7 +18,7 @@
 - P6 レポート出力と次アクション選択
 
 ## Blockers
-- None
+- `feature/task-015-camera-closeout-integration` の最新コミット (`9eb8403`) がリモート未反映（GitHub認証再通過が必要）
 
 ## 3-Level Validation (Dispatch Readiness)
 
@@ -30,9 +30,9 @@
 | `TASK_018` | ★☆☆ | Slice (provisional) | Story/Overworld API依存が強く、`TASK_016`/`TASK_017` 後の着手を推奨。 |
 
 ## Next Tasks
-1. Dispatch `docs/inbox/WORKER_PROMPT_TASK_015_Camera_Closeout_Integration.md` to Worker and回帰検証を実施する。
-2. `TASK_015` の検証結果（EditMode/PlayMode/build）を `docs/inbox/REPORT_TASK_015_Camera_Closeout_Integration_20260220.md` に追記し、ゲート通過なら DONE 化する。
-3. `TASK_016` を `docs/inbox/WORKER_PROMPT_TASK_016_StoryChapter_CatalogMetaFlags.md` で起動し、`TASK_017` へ引き渡す契約を固定する。
+1. `9eb8403` をリモートへ push する（GitHub認証を再通過）。
+2. Dispatch `docs/inbox/WORKER_PROMPT_TASK_015_Camera_Closeout_Integration.md` to Worker and回帰検証を実施する。
+3. `TASK_015` の検証結果（EditMode/PlayMode/build）を `docs/inbox/REPORT_TASK_015_Camera_Closeout_Integration_20260220.md` に追記し、ゲート通過なら DONE 化する。
 
 ## Created Tickets
 - `docs/tasks/TASK_013_CameraSettings_SO.md`
