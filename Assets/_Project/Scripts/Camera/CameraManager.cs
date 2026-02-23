@@ -196,6 +196,7 @@ namespace GlitchWorker.Camera
             _cinematicMode.Enter(cameraPoint, zone);
             _activeMode = CameraViewMode.Cinematic;
 
+            GlitchWorker.Systems.GameEventBus.RaiseCinematicEntered(cameraPoint, zone);
             GlitchWorker.Systems.GameEventBus.RaiseCameraModeChanged(previousMode, _activeMode);
         }
 
@@ -212,6 +213,7 @@ namespace GlitchWorker.Camera
             _cinematicMode.Exit();
             _activeMode = _modeBeforeCinematic;
 
+            GlitchWorker.Systems.GameEventBus.RaiseCinematicExited();
             GlitchWorker.Systems.GameEventBus.RaiseCameraModeChanged(previousMode, _activeMode);
         }
 

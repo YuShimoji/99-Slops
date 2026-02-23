@@ -114,5 +114,69 @@ namespace GlitchWorker.Tests.EditMode
             _manager.EnterCinematic(null);
             Assert.AreEqual(CameraViewMode.FirstPerson, _manager.ActiveMode);
         }
+        [Test]
+        public void Toggle_RaisesCameraModeChangedEvent()
+        {
+            CameraViewMode? raisedPrev = null;
+            CameraViewMode? raisedNew = null;
+            System.Action<CameraViewMode, CameraViewMode> handler = (prev, next) =>
+            {
+                raisedPrev = prev;
+                raisedNew = next;
+            };
+
+            GlitchWorker.Systems.GameEventBus.CameraModeChanged += handler;
+            try
+            {
+                _manager.ToggleFirstThirdPerson();
+                Assert.AreEqual(CameraViewMode.FirstPerson, raisedPrev);
+                Assert.AreEqual(CameraViewMode.ThirdPerson, raisedNew);
+            }
+            finally
+            {
+                GlitchWorker.Systems.GameEventBus.CameraModeChanged -= handler;
+            }
+        }
+
+        [Test]
+        public void EnterCinematic_RaisesCinematicEnteredEvent()
+        {
+            bool raised = false;
+            var point = new GameObject("CinematicPoint").transform;
+            System.Action<Transform, CinematicCameraZone> handler = (p, z) => raised = true;
+
+            GlitchWorker.Systems.GameEventBus.CinematicEntered += handler;
+            try
+            {
+                _manager.EnterCinematic(point);
+                Assert.IsTrue(raised);
+            }
+            finally
+            {
+                GlitchWorker.Systems.GameEventBus.CinematicEntered -= handler;
+                Object.DestroyImmediate(point.gameObject);
+            }
+        }
+
+        [Test]
+        public void ExitCinematic_RaisesCinematicExitedEvent()
+        {
+            bool raised = false;
+            var point = new GameObject("CinematicPoint").transform;
+            System.Action handler = () => raised = true;
+
+            GlitchWorker.Systems.GameEventBus.CinematicExited += handler;
+            try
+            {
+                _manager.EnterCinematic(point);
+                _manager.ExitCinematic();
+                Assert.IsTrue(raised);
+            }
+            finally
+            {
+                GlitchWorker.Systems.GameEventBus.CinematicExited -= handler;
+                Object.DestroyImmediate(point.gameObject);
+            }
+        }
     }
 }

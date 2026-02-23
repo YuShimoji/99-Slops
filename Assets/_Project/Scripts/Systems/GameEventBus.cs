@@ -16,6 +16,8 @@ namespace GlitchWorker.Systems
         public static event Action<Rigidbody, PropBase> BeamReleased;
         public static event Action<Rigidbody, PropBase> BeamThrown;
         public static event Action<CameraViewMode, CameraViewMode> CameraModeChanged;
+        public static event Action<Transform, CinematicCameraZone> CinematicEntered;
+        public static event Action CinematicExited;
 
         public static void RaiseDebugViewToggled(bool isActive)
         {
@@ -45,6 +47,16 @@ namespace GlitchWorker.Systems
         public static void RaiseCameraModeChanged(CameraViewMode previousMode, CameraViewMode newMode)
         {
             CameraModeChanged?.Invoke(previousMode, newMode);
+        }
+
+        public static void RaiseCinematicEntered(Transform cameraPoint, CinematicCameraZone zone)
+        {
+            CinematicEntered?.Invoke(cameraPoint, zone);
+        }
+
+        public static void RaiseCinematicExited()
+        {
+            CinematicExited?.Invoke();
         }
     }
 }

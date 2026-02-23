@@ -17,6 +17,8 @@ namespace GlitchWorker.Systems
             GameEventBus.BeamReleased += OnBeamReleased;
             GameEventBus.BeamThrown += OnBeamThrown;
             GameEventBus.CameraModeChanged += OnCameraModeChanged;
+            GameEventBus.CinematicEntered += OnCinematicEntered;
+            GameEventBus.CinematicExited += OnCinematicExited;
         }
 
         private void OnDisable()
@@ -27,6 +29,8 @@ namespace GlitchWorker.Systems
             GameEventBus.BeamReleased -= OnBeamReleased;
             GameEventBus.BeamThrown -= OnBeamThrown;
             GameEventBus.CameraModeChanged -= OnCameraModeChanged;
+            GameEventBus.CinematicEntered -= OnCinematicEntered;
+            GameEventBus.CinematicExited -= OnCinematicExited;
         }
 
         private static void OnDebugViewToggled(bool isActive)
@@ -64,6 +68,18 @@ namespace GlitchWorker.Systems
         private static void OnCameraModeChanged(CameraViewMode previousMode, CameraViewMode newMode)
         {
             Debug.Log($"[GameEventBus] CameraModeChanged: {previousMode} -> {newMode}");
+        }
+
+        private static void OnCinematicEntered(Transform cameraPoint, CinematicCameraZone zone)
+        {
+            string pointName = cameraPoint != null ? cameraPoint.name : "null";
+            string zoneName = zone != null ? zone.name : "none";
+            Debug.Log($"[GameEventBus] CinematicEntered: point={pointName}, zone={zoneName}");
+        }
+
+        private static void OnCinematicExited()
+        {
+            Debug.Log("[GameEventBus] CinematicExited");
         }
     }
 }
