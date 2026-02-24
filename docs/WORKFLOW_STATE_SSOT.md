@@ -1,24 +1,21 @@
 ﻿# WORKFLOW_STATE_SSOT
 
 ## Meta
-- Last Updated: 2026-02-25T03:19:42+09:00
+- Last Updated: 2026-02-25T03:27:10+09:00
 - Owner: Orchestrator
 - Source of Truth: `shared-workflows/docs/windsurf_workflow/EVERY_SESSION.md`
 
 ## Current Context
 - Current Phase: P5 (Worker Dispatch Preparation)
-- Active Task: `TASK_015_Camera_Closeout_Integration`
-- Test Phase: Hardening (completed)
-- Branch: `feature/task-015-camera-closeout-integration`
+- Active Task: `TASK_016_StoryChapter_CatalogMetaFlags`
+- Test Phase: Stable (planning)
+- Branch: feature/task-015-camera-closeout-integration
 
 ## Layer Split (Verification Gate)
-- Layer A (AI-completable): DONE
-  - Closeout report updated
-  - Test results summarized
-- Layer B (manual / runtime execution): DONE
-  - EditMode/PlayMode/Build executed
-  - Artifacts captured under docs/inbox/artifacts/TASK_015_20260225/
-  - Note: build output file not present in repo at verification time
+- Layer A (AI-completable): IN_PROGRESS
+  - Worker prompt dispatch for TASK_016
+- Layer B (manual / runtime execution): TODO
+  - Implement and verify TASK_016
 
 ## Blocked Normal Form
 - Blocker Type: None
@@ -29,5 +26,7 @@
 - Re-proposal Suppression: N/A
 
 ## Next Action
+- Dispatch TASK_016 worker prompt
 - Commit and push TASK_015 closeout updates, then decide on build artifact rerun if required
+
 

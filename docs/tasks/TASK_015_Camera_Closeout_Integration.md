@@ -71,9 +71,10 @@ As Phase 2A (MG-1) closeout, integrate outcomes from `TASK_003`, `TASK_013`, and
 ## Risks / Notes
 
 - `TASK_003`/`013`/`014` scopes overlap, so merge conflicts are possible during integration
-- Unity verification completed (EditMode/PlayMode/Build exit code 0); build output file not present in repo at verification time
+- Unity verification completed (EditMode/PlayMode/Build exit code 0); build output file not present in repo at verification time; build rerun deferred per directive
 - 2026-02-23 再検証方針: 既存 Worker 報告と実ログの不一致があるため、EditMode/PlayMode/Build を証跡必須で再実行する
 ## Milestone
 
 - SG-3 / MG-1
+
 
