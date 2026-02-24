@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="17" result="Passed" total="17" passed="17" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-02-24 17:28:22Z" end-time="2026-02-24 17:28:22Z" duration="0.0979809">
+  <test-suite type="TestSuite" id="1000" name="99PercentSlops" fullname="99PercentSlops" runstate="Runnable" testcasecount="17" result="Passed" start-time="2026-02-24 17:28:22Z" end-time="2026-02-24 17:28:22Z" duration="0.097981" total="17" passed="17" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1021" name="Tests.EditMode.dll" fullname="C:/Users/thank/Storage/Game Projects/99PercentSlops/Library/ScriptAssemblies/Tests.EditMode.dll" runstate="Runnable" testcasecount="17" result="Passed" start-time="2026-02-24 17:28:22Z" end-time="2026-02-24 17:28:22Z" duration="0.081028" total="17" passed="17" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="13828" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1022" name="GlitchWorker" fullname="GlitchWorker" runstate="Runnable" testcasecount="17" result="Passed" start-time="2026-02-24 17:28:22Z" end-time="2026-02-24 17:28:22Z" duration="0.080267" total="17" passed="17" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1023" name="Tests" fullname="GlitchWorker.Tests" runstate="Runnable" testcasecount="17" result="Passed" start-time="2026-02-24 17:28:22Z" end-time="2026-02-24 17:28:22Z" duration="0.079375" total="17" passed="17" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestSuite" id="1024" name="EditMode" fullname="GlitchWorker.Tests.EditMode" runstate="Runnable" testcasecount="17" result="Passed" start-time="2026-02-24 17:28:22Z" end-time="2026-02-24 17:28:22Z" duration="0.078763" total="17" passed="17" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="TestFixture" id="1002" name="CameraModeStateTests" fullname="GlitchWorker.Tests.EditMode.CameraModeStateTests" classname="GlitchWorker.Tests.EditMode.CameraModeStateTests" runstate="Runnable" testcasecount="11" result="Passed" start-time="2026-02-24 17:28:22Z" end-time="2026-02-24 17:28:22Z" duration="0.071139" total="11" passed="11" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1003" name="DefaultMode_IsFirstPerson" fullname="GlitchWorker.Tests.EditMode.CameraModeStateTests.DefaultMode_IsFirstPerson" methodname="DefaultMode_IsFirstPerson" classname="GlitchWorker.Tests.EditMode.CameraModeStateTests" runstate="Runnable" seed="761932207" result="Passed" start-time="2026-02-24 17:28:22Z" end-time="2026-02-24 17:28:22Z" duration="0.024339" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1010" name="EnterCinematic_NullPoint_DoesNothing" fullname="GlitchWorker.Tests.EditMode.CameraModeStateTests.EnterCinematic_NullPoint_DoesNothing" methodname="EnterCinematic_NullPoint_DoesNothing" classname="GlitchWorker.Tests.EditMode.CameraModeStateTests" runstate="Runnable" seed="190387636" result="Passed" start-time="2026-02-24 17:28:22Z" end-time="2026-02-24 17:28:22Z" duration="0.001239" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1012" name="EnterCinematic_RaisesCinematicEnteredEvent" fullname="GlitchWorker.Tests.EditMode.CameraModeStateTests.EnterCinematic_RaisesCinematicEnteredEvent" methodname="EnterCinematic_RaisesCinematicEnteredEvent" classname="GlitchWorker.Tests.EditMode.CameraModeStateTests" runstate="Runnable" seed="508786166" result="Passed" start-time="2026-02-24 17:28:22Z" end-time="2026-02-24 17:28:22Z" duration="0.001462" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1006" name="EnterCinematic_SetsCinematicMode" fullname="GlitchWorker.Tests.EditMode.CameraModeStateTests.EnterCinematic_SetsCinematicMode" methodname="EnterCinematic_SetsCinematicMode" classname="GlitchWorker.Tests.EditMode.CameraModeStateTests" runstate="Runnable" seed="490922945" result="Passed" start-time="2026-02-24 17:28:22Z" end-time="2026-02-24 17:28:22Z" duration="0.000893" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1013" name="ExitCinematic_RaisesCinematicExitedEvent" fullname="GlitchWorker.Tests.EditMode.CameraModeStateTests.ExitCinematic_RaisesCinematicExitedEvent" methodname="ExitCinematic_RaisesCinematicExitedEvent" classname="GlitchWorker.Tests.EditMode.CameraModeStateTests" runstate="Runnable" seed="1270836358" result="Passed" start-time="2026-02-24 17:28:22Z" end-time="2026-02-24 17:28:22Z" duration="0.000909" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1007" name="ExitCinematic_RestoresPreviousMode" fullname="GlitchWorker.Tests.EditMode.CameraModeStateTests.ExitCinematic_RestoresPreviousMode" methodname="ExitCinematic_RestoresPreviousMode" classname="GlitchWorker.Tests.EditMode.CameraModeStateTests" runstate="Runnable" seed="450372386" result="Passed" start-time="2026-02-24 17:28:22Z" end-time="2026-02-24 17:28:22Z" duration="0.000625" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1009" name="ExitCinematic_WrongZone_DoesNotExit" fullname="GlitchWorker.Tests.EditMode.CameraModeStateTests.ExitCinematic_WrongZone_DoesNotExit" methodname="ExitCinematic_WrongZone_DoesNotExit" classname="GlitchWorker.Tests.EditMode.CameraModeStateTests" runstate="Runnable" seed="1837302705" result="Passed" start-time="2026-02-24 17:28:22Z" end-time="2026-02-24 17:28:22Z" duration="0.016031" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1008" name="Toggle_DuringCinematic_DoesNothing" fullname="GlitchWorker.Tests.EditMode.CameraModeStateTests.Toggle_DuringCinematic_DoesNothing" methodname="Toggle_DuringCinematic_DoesNothing" classname="GlitchWorker.Tests.EditMode.CameraModeStateTests" runstate="Runnable" seed="567685046" result="Passed" start-time="2026-02-24 17:28:22Z" end-time="2026-02-24 17:28:22Z" duration="0.000607" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1011" name="Toggle_RaisesCameraModeChangedEvent" fullname="GlitchWorker.Tests.EditMode.CameraModeStateTests.Toggle_RaisesCameraModeChangedEvent" methodname="Toggle_RaisesCameraModeChangedEvent" classname="GlitchWorker.Tests.EditMode.CameraModeStateTests" runstate="Runnable" seed="152344631" result="Passed" start-time="2026-02-24 17:28:22Z" end-time="2026-02-24 17:28:22Z" duration="0.000747" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1004" name="Toggle_SwitchesToThirdPerson" fullname="GlitchWorker.Tests.EditMode.CameraModeStateTests.Toggle_SwitchesToThirdPerson" methodname="Toggle_SwitchesToThirdPerson" classname="GlitchWorker.Tests.EditMode.CameraModeStateTests" runstate="Runnable" seed="580743710" result="Passed" start-time="2026-02-24 17:28:22Z" end-time="2026-02-24 17:28:22Z" duration="0.000323" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1005" name="Toggle_Twice_ReturnsToFirstPerson" fullname="GlitchWorker.Tests.EditMode.CameraModeStateTests.Toggle_Twice_ReturnsToFirstPerson" methodname="Toggle_Twice_ReturnsToFirstPerson" classname="GlitchWorker.Tests.EditMode.CameraModeStateTests" runstate="Runnable" seed="1992727366" result="Passed" start-time="2026-02-24 17:28:22Z" end-time="2026-02-24 17:28:22Z" duration="0.000304" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="1014" name="CameraSmoothingTests" fullname="GlitchWorker.Tests.EditMode.CameraSmoothingTests" classname="GlitchWorker.Tests.EditMode.CameraSmoothingTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-02-24 17:28:22Z" end-time="2026-02-24 17:28:22Z" duration="0.005415" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1020" name="AccumulateLookInput_AccumulatesYaw" fullname="GlitchWorker.Tests.EditMode.CameraSmoothingTests.AccumulateLookInput_AccumulatesYaw" methodname="AccumulateLookInput_AccumulatesYaw" classname="GlitchWorker.Tests.EditMode.CameraSmoothingTests" runstate="Runnable" seed="739413297" result="Passed" start-time="2026-02-24 17:28:22Z" end-time="2026-02-24 17:28:22Z" duration="0.001648" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1018" name="AccumulateLookInput_ClampsMaxPitch" fullname="GlitchWorker.Tests.EditMode.CameraSmoothingTests.AccumulateLookInput_ClampsMaxPitch" methodname="AccumulateLookInput_ClampsMaxPitch" classname="GlitchWorker.Tests.EditMode.CameraSmoothingTests" runstate="Runnable" seed="1678868674" result="Passed" start-time="2026-02-24 17:28:22Z" end-time="2026-02-24 17:28:22Z" duration="0.000187" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1019" name="AccumulateLookInput_InvertY_ReversesDirection" fullname="GlitchWorker.Tests.EditMode.CameraSmoothingTests.AccumulateLookInput_InvertY_ReversesDirection" methodname="AccumulateLookInput_InvertY_ReversesDirection" classname="GlitchWorker.Tests.EditMode.CameraSmoothingTests" runstate="Runnable" seed="2110889970" result="Passed" start-time="2026-02-24 17:28:22Z" end-time="2026-02-24 17:28:22Z" duration="0.000173" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1015" name="SmoothYawPitch_ConvergesToTarget" fullname="GlitchWorker.Tests.EditMode.CameraSmoothingTests.SmoothYawPitch_ConvergesToTarget" methodname="SmoothYawPitch_ConvergesToTarget" classname="GlitchWorker.Tests.EditMode.CameraSmoothingTests" runstate="Runnable" seed="1006458716" result="Passed" start-time="2026-02-24 17:28:22Z" end-time="2026-02-24 17:28:22Z" duration="0.000527" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1016" name="SmoothYawPitch_ZeroDeltaTime_DoesNotCrash" fullname="GlitchWorker.Tests.EditMode.CameraSmoothingTests.SmoothYawPitch_ZeroDeltaTime_DoesNotCrash" methodname="SmoothYawPitch_ZeroDeltaTime_DoesNotCrash" classname="GlitchWorker.Tests.EditMode.CameraSmoothingTests" runstate="Runnable" seed="1114748730" result="Passed" start-time="2026-02-24 17:28:22Z" end-time="2026-02-24 17:28:22Z" duration="0.000962" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1017" name="SmoothYawPitch_ZeroSmoothTime_UsesMinimum" fullname="GlitchWorker.Tests.EditMode.CameraSmoothingTests.SmoothYawPitch_ZeroSmoothTime_UsesMinimum" methodname="SmoothYawPitch_ZeroSmoothTime_UsesMinimum" classname="GlitchWorker.Tests.EditMode.CameraSmoothingTests" runstate="Runnable" seed="1378621424" result="Passed" start-time="2026-02-24 17:28:22Z" end-time="2026-02-24 17:28:22Z" duration="0.000259" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: C:/Users/thank/AppData/LocalLow/DefaultCompany/99PercentSlops\TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

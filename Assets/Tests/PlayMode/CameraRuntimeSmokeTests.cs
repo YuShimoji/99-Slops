@@ -28,8 +28,10 @@ namespace GlitchWorker.Tests.PlayMode
         [TearDown]
         public void TearDown()
         {
-            Object.Destroy(_playerGo);
-            Object.Destroy(_managerGo);
+            // Use DestroyImmediate to ensure the singleton Instance is cleared
+            // before the next test's SetUp runs in the same frame.
+            Object.DestroyImmediate(_playerGo);
+            Object.DestroyImmediate(_managerGo);
         }
 
         [UnityTest]

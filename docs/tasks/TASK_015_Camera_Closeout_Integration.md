@@ -1,8 +1,8 @@
-# TASK_015_Camera_Closeout_Integration
+﻿# TASK_015_Camera_Closeout_Integration
 
 ## Status
 
-IN_PROGRESS
+DONE
 
 ## Tier / Branch
 
@@ -12,6 +12,7 @@ IN_PROGRESS
 ## Report
 
 - `docs/inbox/REPORT_TASK_015_Camera_Closeout_Integration_20260220.md`
+- `docs/inbox/REPORT_TASK_015_Camera_Closeout_Integration_20260225.md` (final verification)
 - `REPORTS/TASK_015_Closeout_Report.md` (legacy location)
 
 ## Summary
@@ -43,11 +44,11 @@ As Phase 2A (MG-1) closeout, integrate outcomes from `TASK_003`, `TASK_013`, and
 
 ## Definition of Done (DoD)
 
-- [ ] 1P/3P/Cinematic switching and recovery work correctly
-- [ ] Main `CameraSettings` parameters are editable in Inspector
-- [ ] Camera-related event publishing/subscription logs are verified
-- [ ] EditMode and PlayMode test results are recorded
-- [ ] If failures occur, record cause, repro steps, and temporary mitigation
+- [x] 1P/3P/Cinematic switching and recovery work correctly
+- [x] Main `CameraSettings` parameters are editable in Inspector
+- [x] Camera-related event publishing/subscription logs are verified
+- [x] EditMode and PlayMode test results are recorded (21/21 passed)
+- [x] Failures found in PlayMode TearDown, cause recorded, fix applied (DestroyImmediate)
 
 ## Stop Conditions
 
@@ -70,9 +71,9 @@ As Phase 2A (MG-1) closeout, integrate outcomes from `TASK_003`, `TASK_013`, and
 ## Risks / Notes
 
 - `TASK_003`/`013`/`014` scopes overlap, so merge conflicts are possible during integration
-- Implementation commit is present, but Unity test/build verification is still pending
+- Unity verification completed (EditMode/PlayMode/Build exit code 0); build output file not present in repo at verification time
 - 2026-02-23 再検証方針: 既存 Worker 報告と実ログの不一致があるため、EditMode/PlayMode/Build を証跡必須で再実行する
-
 ## Milestone
 
 - SG-3 / MG-1
+

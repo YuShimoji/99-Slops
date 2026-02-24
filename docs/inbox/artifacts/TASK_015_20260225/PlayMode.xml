@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="4" result="Passed" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-02-24 17:30:58Z" end-time="2026-02-24 17:30:58Z" duration="0.1081596">
+  <test-suite type="TestSuite" id="1013" name="99PercentSlops" fullname="99PercentSlops" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-02-24 17:30:58Z" end-time="2026-02-24 17:30:58Z" duration="0.108160" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="PlayMode" />
+    </properties>
+    <test-suite type="Assembly" id="1006" name="Tests.PlayMode.dll" fullname="C:/Users/thank/Storage/Game Projects/99PercentSlops/Library/ScriptAssemblies/Tests.PlayMode.dll" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-02-24 17:30:58Z" end-time="2026-02-24 17:30:58Z" duration="0.098014" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="85484" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="PlayMode" />
+        <property name="EditorOnly" value="False" />
+      </properties>
+      <test-suite type="TestSuite" id="1007" name="GlitchWorker" fullname="GlitchWorker" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-02-24 17:30:58Z" end-time="2026-02-24 17:30:58Z" duration="0.096992" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1008" name="Tests" fullname="GlitchWorker.Tests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-02-24 17:30:58Z" end-time="2026-02-24 17:30:58Z" duration="0.096512" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestSuite" id="1009" name="PlayMode" fullname="GlitchWorker.Tests.PlayMode" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-02-24 17:30:58Z" end-time="2026-02-24 17:30:58Z" duration="0.095996" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="TestFixture" id="1001" name="CameraRuntimeSmokeTests" fullname="GlitchWorker.Tests.PlayMode.CameraRuntimeSmokeTests" classname="GlitchWorker.Tests.PlayMode.CameraRuntimeSmokeTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-02-24 17:30:58Z" end-time="2026-02-24 17:30:58Z" duration="0.094358" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1004" name="Cinematic_EnterAndExit_RestoresMode" fullname="GlitchWorker.Tests.PlayMode.CameraRuntimeSmokeTests.Cinematic_EnterAndExit_RestoresMode" methodname="Cinematic_EnterAndExit_RestoresMode" classname="GlitchWorker.Tests.PlayMode.CameraRuntimeSmokeTests" runstate="Runnable" seed="1520851893" result="Passed" start-time="2026-02-24 17:30:58Z" end-time="2026-02-24 17:30:58Z" duration="0.035379" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1005" name="Forward_ReturnsHorizontalVector" fullname="GlitchWorker.Tests.PlayMode.CameraRuntimeSmokeTests.Forward_ReturnsHorizontalVector" methodname="Forward_ReturnsHorizontalVector" classname="GlitchWorker.Tests.PlayMode.CameraRuntimeSmokeTests" runstate="Runnable" seed="972087395" result="Passed" start-time="2026-02-24 17:30:58Z" end-time="2026-02-24 17:30:58Z" duration="0.021435" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1002" name="HandleLook_DoesNotThrow_AfterAwake" fullname="GlitchWorker.Tests.PlayMode.CameraRuntimeSmokeTests.HandleLook_DoesNotThrow_AfterAwake" methodname="HandleLook_DoesNotThrow_AfterAwake" classname="GlitchWorker.Tests.PlayMode.CameraRuntimeSmokeTests" runstate="Runnable" seed="156366907" result="Passed" start-time="2026-02-24 17:30:58Z" end-time="2026-02-24 17:30:58Z" duration="0.005999" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1003" name="Toggle_RuntimeSwitch_1P_To_3P" fullname="GlitchWorker.Tests.PlayMode.CameraRuntimeSmokeTests.Toggle_RuntimeSwitch_1P_To_3P" methodname="Toggle_RuntimeSwitch_1P_To_3P" classname="GlitchWorker.Tests.PlayMode.CameraRuntimeSmokeTests" runstate="Runnable" seed="1205740350" result="Passed" start-time="2026-02-24 17:30:58Z" end-time="2026-02-24 17:30:58Z" duration="0.011344" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: C:/Users/thank/AppData/LocalLow/DefaultCompany/99PercentSlops\TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>
