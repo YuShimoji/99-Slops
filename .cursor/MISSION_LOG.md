@@ -3,8 +3,8 @@
 ## Header
 - **Mission ID**: ORCH_20260216_1555
 - **Started At**: 2026-02-16T15:55:29+09:00
-- **Last Updated**: 2026-02-24T19:00:07+09:00
-- **Current Phase**: P6 (Orchestrator Report)
+- **Last Updated**: 2026-02-25T18:43:54+09:00
+- **Current Phase**: P2 (Status Mapping)
 - **Status**: IN_PROGRESS
 
 ## Goal
@@ -17,14 +17,15 @@
 - TASK_018 is DONE (cinematic validation scene setup + report + commit `d99115b`).
 - TASK_019 is CLOSED (input binding conflict resolved).
 - Manual PlayMode verification is intentionally deferred to keep implementation velocity.
+- P6 outputs completed (`docs/inbox/REPORT_ORCH_20260224_1900.md`, `docs/MILESTONE_PLAN.md`, validator/session checks).
 
 ## Blockers
 - Runtime Play verification requires Unity Editor execution and remains deferred by policy.
 
 ## Next Tasks
-1. Publish P6 closeout summary for TASK_017/018/019 with deferred-manual-test note.
-2. Reconcile remaining OPEN tickets (`TASK_013` / `TASK_014` / `TASK_015`) with current implementation evidence.
-3. Schedule Layer B manual PlayMode verification and append outcomes to report/tickets.
+1. P2で `TASK_013` / `TASK_014` / `TASK_015` を実装実態ベースで再分類（DONE候補 or 追加実装）。
+2. 追加実装が必要な項目のみP4/P5でWorker再投入。
+3. Layer B手動PlayMode検証を計画化し、closeout証跡を追記。
 
 ## Created Tickets
 - `docs/tasks/TASK_013_CameraSettings_SO.md`
@@ -40,5 +41,5 @@
 - Presentation: `shared-workflows/data/presentation.json`
 - Workflow: `shared-workflows/docs/windsurf_workflow/EVERY_SESSION.md`
 - Core Module: `shared-workflows/prompts/orchestrator/modules/00_core.md`
-- Current Phase Module: `shared-workflows/prompts/orchestrator/modules/P6_report.md`
-- Next Phase Module: `shared-workflows/prompts/orchestrator/modules/P2_status.md`
+- Current Phase Module: `shared-workflows/prompts/orchestrator/modules/P2_status.md`
+- Next Phase Module: `shared-workflows/prompts/orchestrator/modules/P4_ticket.md`
