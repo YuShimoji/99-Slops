@@ -1,7 +1,7 @@
 # TASK_018_CameraEvents_Cinematic_Validation
 
 ## Status
-OPEN
+DONE (2026-02-24)
 
 ## Tier / Branch
 - Tier: 1 (Core)
@@ -50,3 +50,13 @@ Add minimal scene wiring to validate `CameraViewModeChanged`, `CinematicEntered`
 
 ## Milestone
 - Phase 2A
+
+## Completion Notes
+- Worker report: `docs/reports/REPORT_018_CameraEvents_Cinematic_Validation.md`
+- Commit: `d99115b`
+- 実装/構成確認:
+  - `GameEventDebugLogger` 配置確認（fileID: 2100000000）
+  - `CinematicCameraZone` 配置確認（fileID: 2100000020）
+  - `CinematicCameraPoint` 配置確認（fileID: 2100000030）
+  - 重複防止ロジック確認（同一モード遷移フィルタ、Cinematic exit guard）
+- 手動PlayMode検証は開発優先のため未実施。後続で Layer B として実施する。

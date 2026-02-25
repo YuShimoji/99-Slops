@@ -85,3 +85,16 @@ GitHubAutoApprove: true
 
 - 旧レポートの Risk/Changes 欄が空のまま残ると監査警告が継続する
 - REPORT_ORCH CLI を使わない手動保存で検証漏れが再発する可能性
+
+## Session Update (2026-02-24)
+
+- TASK_018 (`docs/tasks/TASK_018_CameraEvents_Cinematic_Validation.md`) を DONE 化。
+- 実装根拠: Worker report `docs/reports/REPORT_018_CameraEvents_Cinematic_Validation.md`, commit `d99115b`。
+- 方針: 手動PlayMode検証は開発優先のため deferred（Layer B）として維持。
+- MISSION_LOG を P6（Orchestrator Report）へ更新済み。
+- WORKFLOW_STATE_SSOT を作成・更新し、次アクションを `TASK_013/014/015` 再分類に一本化。
+
+### Next Owner Action
+1. TASK_013 / TASK_014 / TASK_015 の実装実態を証跡付きで棚卸し。
+2. 実装済みは DONE 候補として同期、未充足のみ Worker 追加投入。
+3. Layer B 手動検証を後続セッションで実施し、tickets/report/RESUME へ反映。
