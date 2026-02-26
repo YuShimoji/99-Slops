@@ -91,6 +91,7 @@ namespace GlitchWorker.Systems
         {
             if (_currentState == GameplayState.Cleared || _currentState == GameplayState.Failed)
             {
+                GameEventBus.RaiseGameplayRestarted();
                 SetState(GameplayState.Playing);
             }
         }

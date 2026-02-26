@@ -26,6 +26,7 @@ namespace GlitchWorker.Systems
         public static event Action<Transform> CinematicEntered;
         public static event Action<CameraViewMode> CinematicExited;
         public static event Action<GameplayState, GameplayState> GameplayStateChanged;
+        public static event Action GameplayRestarted;
 
         public static void RaiseDebugViewToggled(bool isActive)
         {
@@ -81,6 +82,13 @@ namespace GlitchWorker.Systems
             int listenerCount = GameplayStateChanged?.GetInvocationList().Length ?? 0;
             Debug.Log($"[GameEventBus] RaiseGameplayStateChanged: {previousState} -> {newState} (listeners: {listenerCount})");
             GameplayStateChanged?.Invoke(previousState, newState);
+        }
+
+        public static void RaiseGameplayRestarted()
+        {
+            int listenerCount = GameplayRestarted?.GetInvocationList().Length ?? 0;
+            Debug.Log($"[GameEventBus] RaiseGameplayRestarted (listeners: {listenerCount})");
+            GameplayRestarted?.Invoke();
         }
     }
 }
