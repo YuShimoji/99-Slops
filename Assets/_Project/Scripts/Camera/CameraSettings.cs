@@ -8,7 +8,7 @@ namespace GlitchWorker.Camera
         [Header("Look")]
         public float SensitivityX = 2f;
         public float SensitivityY = 2f;
-        public bool InvertY;
+        public bool InvertY = false;
         public float MaxLookAngle = 80f;
         [Min(0f)] public float RotationSmoothTime = 0.06f;
 

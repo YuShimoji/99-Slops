@@ -1,0 +1,62 @@
+# TASK_018_CameraEvents_Cinematic_Validation
+
+## Status
+DONE (2026-02-24)
+
+## Tier / Branch
+- Tier: 1 (Core)
+- Branch: feature/camera-events-cinematic-validation
+
+## Summary
+Camera event hooks are implemented in code, but scene-level validation is incomplete.
+Add minimal scene wiring to validate `CameraViewModeChanged`, `CinematicEntered`, and `CinematicExited`.
+
+## Dependency
+- `TASK_016_SandboxScene_SSOT_Sync`
+- `TASK_014_GameEvents_Camera` (superset completion)
+
+## Scope
+- Place `GameEventDebugLogger` in SSOT sandbox scene.
+- Add one `CinematicCameraZone` + camera point for enter/exit verification.
+- Verify event dispatch count and ordering during 1P/3P switch and cinematic enter/exit.
+
+## Deliverables
+- Scene object for `GameEventDebugLogger`
+- Scene object(s) for minimal cinematic zone validation
+- Worker report including event log snippets and duplication check
+
+## Focus Area / Forbidden Area
+- Focus: `Assets/_Project/Scripts/Systems`, `Assets/_Project/Scripts/Camera`, SSOT sandbox scene
+- Forbidden: unrelated AI/gameplay feature expansion
+
+## Constraints
+- No broad scene redesign; add only minimal validation setup.
+- Ensure null-safe event flow remains intact.
+
+## Definition of Done (DoD)
+- Mode switch emits `CameraViewModeChanged` once per actual switch.
+- Entering/leaving cinematic emits corresponding events without duplicates.
+- No runtime null reference errors in logger/event flow.
+
+## Test Plan
+- PlayMode:
+  - toggle 1P/3P with `V` and inspect logs
+  - enter/exit cinematic zone and inspect logs
+- Negative:
+  - ensure no events fire when switching to same mode repeatedly without mode change
+
+## Risks / Notes
+- Event duplication can occur if multiple loggers are present or scene contains duplicate camera managers.
+
+## Milestone
+- Phase 2A
+
+## Completion Notes
+- Worker report: `docs/reports/REPORT_018_CameraEvents_Cinematic_Validation.md`
+- Commit: `d99115b`
+- 実装/構成確認:
+  - `GameEventDebugLogger` 配置確認（fileID: 2100000000）
+  - `CinematicCameraZone` 配置確認（fileID: 2100000020）
+  - `CinematicCameraPoint` 配置確認（fileID: 2100000030）
+  - 重複防止ロジック確認（同一モード遷移フィルタ、Cinematic exit guard）
+- 手動PlayMode検証は開発優先のため未実施。後続で Layer B として実施する。

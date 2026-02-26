@@ -8,6 +8,9 @@ namespace GlitchWorker.Systems
 
         [Header("References")]
         [SerializeField] private Transform _playerSpawnPoint;
+        [SerializeField] private GameplayLoopController _gameplayLoopController;
+
+        public GameplayLoopController GameplayLoop => _gameplayLoopController;
 
         private void Awake()
         {

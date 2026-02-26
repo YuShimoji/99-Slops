@@ -603,6 +603,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GlitchWorker.Camera.CameraManager
   _cameraTransform: {fileID: 0}
+  _settings: {fileID: 11400000, guid: 6d4ddf1d1f5f4f6fa3dbe97810d4ef05, type: 2}
   _sensitivityX: 2
   _sensitivityY: 2
   _invertY: 0

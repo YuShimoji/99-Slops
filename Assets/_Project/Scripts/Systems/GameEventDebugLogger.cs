@@ -9,8 +9,14 @@ namespace GlitchWorker.Systems
     /// </summary>
     public class GameEventDebugLogger : MonoBehaviour
     {
+        private void Awake()
+        {
+            Debug.Log($"[GameEventDebugLogger] Awake on '{gameObject.name}' in scene '{gameObject.scene.name}'");
+        }
+
         private void OnEnable()
         {
+            Debug.Log("[GameEventDebugLogger] OnEnable - subscribing to events");
             GameEventBus.DebugViewToggled += OnDebugViewToggled;
             GameEventBus.PropStateChanged += OnPropStateChanged;
             GameEventBus.BeamGrabbed += OnBeamGrabbed;
@@ -19,6 +25,7 @@ namespace GlitchWorker.Systems
             GameEventBus.CameraModeChanged += OnCameraModeChanged;
             GameEventBus.CinematicEntered += OnCinematicEntered;
             GameEventBus.CinematicExited += OnCinematicExited;
+            GameEventBus.GameplayStateChanged += OnGameplayStateChanged;
         }
 
         private void OnDisable()
@@ -31,6 +38,7 @@ namespace GlitchWorker.Systems
             GameEventBus.CameraModeChanged -= OnCameraModeChanged;
             GameEventBus.CinematicEntered -= OnCinematicEntered;
             GameEventBus.CinematicExited -= OnCinematicExited;
+            GameEventBus.GameplayStateChanged -= OnGameplayStateChanged;
         }
 
         private static void OnDebugViewToggled(bool isActive)
@@ -80,6 +88,11 @@ namespace GlitchWorker.Systems
         private static void OnCinematicExited()
         {
             Debug.Log("[GameEventBus] CinematicExited");
+        }
+
+        private static void OnGameplayStateChanged(GameplayState previousState, GameplayState newState)
+        {
+            Debug.Log($"[GameEventBus] GameplayStateChanged: {previousState} -> {newState}");
         }
     }
 }
