@@ -1,7 +1,7 @@
 # TASK_017_OverworldDirector_VariantResolver
 
 ## Status
-OPEN
+IN_PROGRESS
 
 ## Tier / Branch
 - Tier: 2 (Foundation)
