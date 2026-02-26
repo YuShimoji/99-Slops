@@ -5,6 +5,13 @@ using UnityEngine;
 
 namespace GlitchWorker.Systems
 {
+    public enum GameplayState
+    {
+        Playing,
+        Cleared,
+        Failed
+    }
+
     /// <summary>
     /// Lightweight runtime event bus for prototype-level system decoupling.
     /// </summary>
@@ -18,6 +25,7 @@ namespace GlitchWorker.Systems
         public static event Action<CameraViewMode, CameraViewMode> CameraViewModeChanged;
         public static event Action<Transform> CinematicEntered;
         public static event Action<CameraViewMode> CinematicExited;
+        public static event Action<GameplayState, GameplayState> GameplayStateChanged;
 
         public static void RaiseDebugViewToggled(bool isActive)
         {
@@ -65,6 +73,14 @@ namespace GlitchWorker.Systems
             int listenerCount = CinematicExited?.GetInvocationList().Length ?? 0;
             Debug.Log($"[GameEventBus] RaiseCinematicExited: {restoredMode} (listeners: {listenerCount})");
             CinematicExited?.Invoke(restoredMode);
+        }
+
+        public static void RaiseGameplayStateChanged(GameplayState previousState, GameplayState newState)
+        {
+            if (previousState == newState) return;
+            int listenerCount = GameplayStateChanged?.GetInvocationList().Length ?? 0;
+            Debug.Log($"[GameEventBus] RaiseGameplayStateChanged: {previousState} -> {newState} (listeners: {listenerCount})");
+            GameplayStateChanged?.Invoke(previousState, newState);
         }
     }
 }
