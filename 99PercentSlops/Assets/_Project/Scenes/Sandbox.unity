@@ -990,7 +990,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8b35a44b88d3f14d852c2881a13026e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GlitchWorker.Props.HumanProp
-  _propType: 0
+  _propType: 1
   _currentState: 0
   _componentSlots: 3
   _value: 100
