@@ -3,29 +3,29 @@
 ## Header
 - **Mission ID**: ORCH_20260216_1555
 - **Started At**: 2026-02-16T15:55:29+09:00
-- **Last Updated**: 2026-02-25T18:43:54+09:00
-- **Current Phase**: P2 (Status Mapping)
+- **Last Updated**: 2026-02-27T13:38:50+09:00
+- **Current Phase**: P4 (Ticketing)
 - **Status**: IN_PROGRESS
 
 ## Goal
-- Phase 2A closeout bottlenecks identified from audit are ticketed and ready for Worker dispatch.
-- Prevent integration drift by fixing scene SSOT, camera wiring, event validation, and input conflict in controlled order.
+- ゲーム完成までの最短ルートを優先し、Phase 5の最小Playable Loopを実装収束させる。
+- Unity未使用期間はコンパイルゲート中心で前進し、手動検証は一括後追いにする。
 
 ## In-progress
-- TASK_016 is DONE (SSOT scene path sync).
-- TASK_017 is DONE (CameraSettings asset wiring).
-- TASK_018 is DONE (cinematic validation scene setup + report + commit `d99115b`).
-- TASK_019 is CLOSED (input binding conflict resolved).
-- Manual PlayMode verification is intentionally deferred to keep implementation velocity.
-- P6 outputs completed (`docs/inbox/REPORT_ORCH_20260224_1900.md`, `docs/MILESTONE_PLAN.md`, validator/session checks).
+- TASK_020: COMPLETED
+- TASK_021: COMPLETED_CORE
+- TASK_022: COMPLETED_CORE
+- TASK_023: COMPLETED
+- TASK_024: COMPLETED
+- コンパイルは成功（`dotnet build 99PercentSlops/Assembly-CSharp.csproj -nologo`: 0 Warning / 0 Error）。
 
 ## Blockers
-- Runtime Play verification requires Unity Editor execution and remains deferred by policy.
+- Unity Editor検証が現在不可（意図的deferred）。
 
 ## Next Tasks
-1. P2で `TASK_013` / `TASK_014` / `TASK_015` を実装実態ベースで再分類（DONE候補 or 追加実装）。
-2. 追加実装が必要な項目のみP4/P5でWorker再投入。
-3. Layer B手動PlayMode検証を計画化し、closeout証跡を追記。
+1. Unity復帰後に `TASK_025_UnityDeferred_Validation_Batch` を実施し、020-024のDONE昇格可否を確定。
+2. 継続実装時は compile gate（`dotnet build 99PercentSlops/Assembly-CSharp.csproj -nologo`）で毎回回帰確認。
+3. `TASK_021/022` の `COMPLETED_CORE` -> `DONE` 判定を `TASK_025` の結果で更新。
 
 ## Created Tickets
 - `docs/tasks/TASK_013_CameraSettings_SO.md`
@@ -35,11 +35,17 @@
 - `docs/tasks/TASK_017_CameraSettings_Asset_Wiring.md`
 - `docs/tasks/TASK_018_CameraEvents_Cinematic_Validation.md`
 - `docs/tasks/TASK_019_InputBinding_Conflict_Resolution.md`
+- `docs/tasks/TASK_020_PlayableLoop_CoreFlow.md`
+- `docs/tasks/TASK_021_UploadPort_Objective_Wiring.md`
+- `docs/tasks/TASK_022_ResultHUD_Minimal.md`
+- `docs/tasks/TASK_023_PlayableLoop_ClearFail_Finalize.md`
+- `docs/tasks/TASK_024_Phase5_VerticalSlice_Integration.md`
+- `docs/tasks/TASK_025_UnityDeferred_Validation_Batch.md`
 
 ## Operational SSOT
 - Orchestrator Driver: `shared-workflows/prompts/every_time/ORCHESTRATOR_DRIVER.txt`
 - Presentation: `shared-workflows/data/presentation.json`
 - Workflow: `shared-workflows/docs/windsurf_workflow/EVERY_SESSION.md`
 - Core Module: `shared-workflows/prompts/orchestrator/modules/00_core.md`
-- Current Phase Module: `shared-workflows/prompts/orchestrator/modules/P2_status.md`
-- Next Phase Module: `shared-workflows/prompts/orchestrator/modules/P4_ticket.md`
+- Current Phase Module: `shared-workflows/prompts/orchestrator/modules/P4_ticket.md`
+- Next Phase Module: `shared-workflows/prompts/orchestrator/modules/P5_worker.md`

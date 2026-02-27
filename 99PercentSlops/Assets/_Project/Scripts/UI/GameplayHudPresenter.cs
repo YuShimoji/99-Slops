@@ -15,6 +15,7 @@ namespace GlitchWorker.UI
         [SerializeField] private TextMeshProUGUI _progressText;
         [SerializeField] private TextMeshProUGUI _stateText;
         [SerializeField] private GameObject _restartHintPanel;
+        [SerializeField] private TextMeshProUGUI _restartHintLabel;
 
         [Header("State Display")]
         [SerializeField] private string _playingStateText = "PLAYING";
@@ -24,6 +25,13 @@ namespace GlitchWorker.UI
 
         [Header("Debug")]
         [SerializeField] private bool _enableDebugLogs = true;
+        private bool _missingUploadPortLogged;
+
+        private void Awake()
+        {
+            ResolveRestartHintLabel();
+            ApplyRestartHintText();
+        }
 
         private void OnEnable()
         {
@@ -40,7 +48,10 @@ namespace GlitchWorker.UI
         private void Start()
         {
             UpdateProgressDisplay();
-            UpdateStateDisplay(GameplayState.Playing);
+            GameplayState initialState = GameplayLoopController.Instance != null
+                ? GameplayLoopController.Instance.CurrentState
+                : GameplayState.Playing;
+            UpdateStateDisplay(initialState);
         }
 
         private void Update()
@@ -50,7 +61,17 @@ namespace GlitchWorker.UI
 
         private void UpdateProgressDisplay()
         {
-            if (_uploadPort == null || _progressText == null) return;
+            if (_uploadPort == null)
+            {
+                if (_enableDebugLogs && !_missingUploadPortLogged)
+                {
+                    Debug.LogWarning("[GameplayHudPresenter] UploadPort reference is missing.");
+                    _missingUploadPortLogged = true;
+                }
+                return;
+            }
+
+            if (_progressText == null) return;
 
             int current = _uploadPort.CurrentProgress;
             int required = _uploadPort.RequiredCount;
@@ -69,11 +90,30 @@ namespace GlitchWorker.UI
 
         private void OnGameplayRestarted()
         {
+            UpdateProgressDisplay();
             UpdateStateDisplay(GameplayState.Playing);
 
             if (_enableDebugLogs)
             {
                 Debug.Log("[GameplayHudPresenter] Gameplay restarted, UI reset.");
+            }
+        }
+
+        private void ResolveRestartHintLabel()
+        {
+            if (_restartHintLabel != null || _restartHintPanel == null)
+            {
+                return;
+            }
+
+            _restartHintLabel = _restartHintPanel.GetComponentInChildren<TextMeshProUGUI>(true);
+        }
+
+        private void ApplyRestartHintText()
+        {
+            if (_restartHintLabel != null)
+            {
+                _restartHintLabel.text = _restartHintText;
             }
         }
 

@@ -6,6 +6,8 @@ namespace GlitchWorker.Gimmicks
 {
     public class UploadPort : MonoBehaviour
     {
+        private const int MinRequiredCount = 1;
+
         [Header("Objective Settings")]
         [SerializeField] private int _requiredCount = 3;
         [SerializeField] private PropType _acceptedPropType = PropType.AI;
@@ -17,6 +19,16 @@ namespace GlitchWorker.Gimmicks
         private int _currentProgress = 0;
         public int CurrentProgress => _currentProgress;
         public int RequiredCount => _requiredCount;
+
+        private void Awake()
+        {
+            _requiredCount = Mathf.Max(MinRequiredCount, _requiredCount);
+        }
+
+        private void OnValidate()
+        {
+            _requiredCount = Mathf.Max(MinRequiredCount, _requiredCount);
+        }
 
         private void OnEnable()
         {
@@ -35,6 +47,11 @@ namespace GlitchWorker.Gimmicks
 
         private void OnTriggerEnter(Collider other)
         {
+            if (!CanAcceptObjectiveProgress())
+            {
+                return;
+            }
+
             PropBase prop = other.GetComponent<PropBase>();
             if (prop == null) return;
 
@@ -51,6 +68,26 @@ namespace GlitchWorker.Gimmicks
             }
         }
 
+        private bool CanAcceptObjectiveProgress()
+        {
+            if (GameplayLoopController.Instance == null)
+            {
+                if (_enableDebugLogs)
+                {
+                    Debug.LogWarning("[UploadPort] Ignored trigger: GameplayLoopController.Instance is null.");
+                }
+                return false;
+            }
+
+            bool canAccept = GameplayLoopController.Instance.CanTransitionToCleared();
+            if (!canAccept && _enableDebugLogs)
+            {
+                Debug.LogWarning($"[UploadPort] Ignored trigger: current state is {GameplayLoopController.Instance.CurrentState}");
+            }
+
+            return canAccept;
+        }
+
         private bool IsAcceptable(PropBase prop)
         {
             return prop.Type == _acceptedPropType && prop.CurrentState == _acceptedPropState;
@@ -58,7 +95,12 @@ namespace GlitchWorker.Gimmicks
 
         private void AcceptProp(PropBase prop)
         {
-            _currentProgress++;
+            if (_currentProgress >= _requiredCount)
+            {
+                return;
+            }
+
+            _currentProgress = Mathf.Min(_currentProgress + 1, _requiredCount);
 
             if (_enableDebugLogs)
             {
@@ -80,14 +122,22 @@ namespace GlitchWorker.Gimmicks
                 Debug.Log($"[UploadPort] Objective Complete! Triggering Cleared.");
             }
 
-            if (GameplayLoopController.Instance != null)
-            {
-                GameplayLoopController.Instance.TriggerCleared();
-            }
-            else
+            if (GameplayLoopController.Instance == null)
             {
                 Debug.LogWarning("[UploadPort] GameplayLoopController.Instance is null!");
+                return;
             }
+
+            if (!GameplayLoopController.Instance.CanTransitionToCleared())
+            {
+                if (_enableDebugLogs)
+                {
+                    Debug.LogWarning($"[UploadPort] Cannot trigger Cleared: current state is {GameplayLoopController.Instance.CurrentState}");
+                }
+                return;
+            }
+
+            GameplayLoopController.Instance.TriggerCleared();
         }
 
         public void ResetProgress()

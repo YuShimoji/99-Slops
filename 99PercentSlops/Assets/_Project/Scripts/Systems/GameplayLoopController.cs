@@ -73,18 +73,40 @@ namespace GlitchWorker.Systems
 
         public void TriggerCleared()
         {
-            if (_currentState == GameplayState.Playing)
+            if (_currentState != GameplayState.Playing)
             {
-                SetState(GameplayState.Cleared);
+                if (_enableDebugLogs)
+                {
+                    Debug.LogWarning($"[GameplayLoopController] TriggerCleared ignored: current state is {_currentState}");
+                }
+                return;
             }
+
+            SetState(GameplayState.Cleared);
         }
 
         public void TriggerFailed()
         {
-            if (_currentState == GameplayState.Playing)
+            if (_currentState != GameplayState.Playing)
             {
-                SetState(GameplayState.Failed);
+                if (_enableDebugLogs)
+                {
+                    Debug.LogWarning($"[GameplayLoopController] TriggerFailed ignored: current state is {_currentState}");
+                }
+                return;
             }
+
+            SetState(GameplayState.Failed);
+        }
+
+        public bool CanTransitionToCleared()
+        {
+            return _currentState == GameplayState.Playing;
+        }
+
+        public bool CanTransitionToFailed()
+        {
+            return _currentState == GameplayState.Playing;
         }
 
         public void Restart()

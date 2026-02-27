@@ -1,33 +1,34 @@
 ﻿# WORKFLOW_STATE_SSOT
 
 ## Last Updated
-- 2026-02-25T18:43:54+09:00
+- 2026-02-27T13:38:50+09:00
 
 ## Current Phase
-- P2 (Status Mapping)
+- P4 (Ticketing)
 
 ## In-progress
-- リモート同期済み（`git pull --rebase --autostash origin master`）。
-- P6成果物作成済み（`docs/inbox/REPORT_ORCH_20260224_1900.md`, `docs/MILESTONE_PLAN.md`）。
-- Phase 2A closeout の実装側は進展済み（016/017/018/019）。
+- TASK_020 は COMPLETED。
+- TASK_021 / TASK_022 は COMPLETED_CORE（Unity配置・手動検証 deferred）。
+- TASK_023 は COMPLETED（状態遷移ガード実装反映）。
+- TASK_024 は COMPLETED（Vertical Slice統合 + null-safe/初期化連携を反映）。
+- コンパイルゲートは通過済み（0 Warning / 0 Error）。
 
 ## Blockers
-- Unity Editor実行を要する手動検証（PlayModeイベントログ確認）が deferred のまま未実施。
+- Unity Editorでの配置/Play確認が現時点で実施不可。
 
 ## Next Action
-- 残OPENタスク（TASK_013/014/015）を実装実態に合わせて再分類し、Worker再投入対象を最小化する。
+- `TASK_025` をUnity復帰後の最優先検証バッチとして実施し、020-024のDONE昇格可否を確定する。
 
-## Layer A (実装継続優先)
-1. [DOCS] TASK_013/014/015 の実装済み要素を証跡付きで棚卸し。
-2. [TASK] 実装済みは DONE 候補、未充足のみ P4/P5 で追加Workerチケット化。
-3. [DOCS] P2分類結果を MISSION_LOG/HANDOVER/MILESTONE に反映。
+## Layer A (実装優先)
+1. [TASK] TASK_025 の検証チェックリストと報告テンプレを先行整備。
+2. [TEST] compile gate（dotnet build）で継続確認。
+3. [DOCS] 024完了レポートとTask Statusの同期。
 
-## Layer B (手動検証保留)
-1. [TEST] Sandbox PlayMode で 1P/3P 切替時の CameraViewModeChanged を確認。
-2. [TEST] Cinematic zone enter/exit の CinematicEntered/Exited 重複なしを確認。
-3. [DOCS] 実測結果を tickets / report / RESUME に追記し closeout。
+## Layer B (Unity復帰後一括)
+1. [TEST] TASK_025で020-024の手動検証を一括実施。
+2. [DOCS] COMPLETED_CORE -> DONE 昇格を反映。
 
 ## Verification Scale (3段階)
-- リモート・P6反映完了度: ★★★
-- 開発継続準備度（P2再分類着手性）: ★★★
-- 手動検証完了度（Layer B）: ★☆☆
+- 完成最短ルート整備: ★★★
+- コンパイル健全性: ★★★
+- Unity手動検証完了度: ★☆☆
