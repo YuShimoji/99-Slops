@@ -1,7 +1,7 @@
 # TASK_013_CameraSettings_SO
 
 ## Status
-OPEN
+DONE (2026-02-26)
 
 ## Tier / Branch
 - Tier: 1 (Core)

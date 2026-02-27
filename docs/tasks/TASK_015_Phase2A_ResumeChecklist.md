@@ -1,7 +1,7 @@
 # TASK_015_Phase2A_ResumeChecklist
 
 ## Status
-OPEN
+DONE (2026-02-26)
 
 ## Tier / Branch
 - Tier: 1 (Core)
