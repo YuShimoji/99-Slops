@@ -3,7 +3,7 @@
 ## Header
 - **Mission ID**: ORCH_20260216_1555
 - **Started At**: 2026-02-16T15:55:29+09:00
-- **Last Updated**: 2026-02-27T13:38:50+09:00
+- **Last Updated**: 2026-02-27T13:51:43+09:00
 - **Current Phase**: P4 (Ticketing)
 - **Status**: IN_PROGRESS
 
@@ -24,8 +24,8 @@
 
 ## Next Tasks
 1. Unity復帰後に `TASK_025_UnityDeferred_Validation_Batch` を実施し、020-024のDONE昇格可否を確定。
-2. 継続実装時は compile gate（`dotnet build 99PercentSlops/Assembly-CSharp.csproj -nologo`）で毎回回帰確認。
-3. `TASK_021/022` の `COMPLETED_CORE` -> `DONE` 判定を `TASK_025` の結果で更新。
+2. `TASK_025` の実行資産（Validation Matrix / Report雛形 / Worker Prompt）は準備完了。
+3. 継続実装時は compile gate（`dotnet build 99PercentSlops/Assembly-CSharp.csproj -nologo`）で毎回回帰確認。
 
 ## Created Tickets
 - `docs/tasks/TASK_013_CameraSettings_SO.md`

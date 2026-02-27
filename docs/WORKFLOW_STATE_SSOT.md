@@ -1,7 +1,7 @@
 ﻿# WORKFLOW_STATE_SSOT
 
 ## Last Updated
-- 2026-02-27T13:38:50+09:00
+- 2026-02-27T13:51:43+09:00
 
 ## Current Phase
 - P4 (Ticketing)
@@ -20,9 +20,9 @@
 - `TASK_025` をUnity復帰後の最優先検証バッチとして実施し、020-024のDONE昇格可否を確定する。
 
 ## Layer A (実装優先)
-1. [TASK] TASK_025 の検証チェックリストと報告テンプレを先行整備。
+1. [TASK] TASK_025 の検証チェックリストと報告テンプレを先行整備。（完了）
 2. [TEST] compile gate（dotnet build）で継続確認。
-3. [DOCS] 024完了レポートとTask Statusの同期。
+3. [DOCS] 025用 Worker Prompt と Report雛形を準備。
 
 ## Layer B (Unity復帰後一括)
 1. [TEST] TASK_025で020-024の手動検証を一括実施。
