@@ -64,6 +64,11 @@ COMPLETED (2026-02-27)
 - 現時点で致命傷ではないが、Unity 更新時の保守負債になりうる。
 - ゲーム本体コードのエラーは確認されなかった。
 
+### 5. 2026-06-03 Unity 6000.4.9f1 同期後の compile gate
+- `dotnet build 99PercentSlops/Assembly-CSharp.csproj -nologo` は成功。
+- 結果は 52 warnings / 0 errors。警告は主に `MCPForUnity` の obsolete API で、`PlayerController.FindFirstObjectByType` の obsolete warning が 1 件含まれる。
+- PlayMode / Scene 配線確認は引き続き `TASK_025` の対象。
+
 ## Risks / Issues
 - High: Unity Editor での手動検証未実施。Scene 配線不整合が残っていても現状は検知できない。
 - Medium: `GameplayHudPresenter` は progress を毎フレーム監視しており、イベント駆動化されていない。

@@ -123,3 +123,18 @@ GitHubAutoApprove: true
 1. `TASK_024_Phase5_VerticalSlice_Integration` を最優先で Worker 投入。
 2. 実装後は compile gate のみで継続検証し、Unity復帰後に `TASK_025` を実施。
 3. `TASK_021/022` の COMPLETED_CORE -> DONE 昇格判断を `TASK_025` 結果で確定。
+
+## Session Update (2026-06-03 18:57)
+
+- ルート `AGENTS.md` を追加し、GLITCH-WORKER のプロジェクト構成、Unity/URP 前提、命名規約、正式仕様、MVP 方針をリポジトリ内で読める状態にした。
+- Unity Editor 更新に伴うローカル差分を保持。`ProjectVersion.txt` は `6000.4.9f1`、URP / packages は 17.4.0 系へ更新された状態。
+- `AI_CONTEXT.md`, `docs/dev/RESUME.md`, `docs/WORKFLOW_STATE_SSOT.md` を 2026-06-03 時点へ同期し、別端末の再開入口を `TASK_025` と `PHASE5_VALIDATION_PREFLIGHT` に一本化した。
+- 既存の実装到達点は変更していない。Phase 5 Vertical Slice の残ブロッカーは引き続き Unity 手動検証。
+- ローカル検証: `git diff --check` 問題なし、Package JSON 構文 OK、`dotnet build 99PercentSlops/Assembly-CSharp.csproj -nologo` 成功（52 warnings / 0 errors）。
+- この同期では Unity Editor の PlayMode 検証は未実行。
+
+### Next Owner Action
+1. 別端末で `git pull origin master` を実行し、Unity 6000.4.9f1 で `99PercentSlops` を開く。
+2. `docs/dev/PHASE5_VALIDATION_PREFLIGHT.md` の C-01〜C-07 で UploadPort / HUD / prop 状態を確認する。
+3. `docs/tasks/TASK_025_UnityDeferred_Validation_Batch.md` の V-01〜V-06 を実施し、結果を `docs/reports/REPORT_025_UnityDeferred_Validation_Batch.md` に記録する。
+4. PASS なら `TASK_021/022` の DONE 昇格候補と `TASK_025` COMPLETED 化を反映する。
