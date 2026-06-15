@@ -1,0 +1,108 @@
+site_name: GLITCH-WORKER Local Docs
+site_description: Local Markdown viewer for audit and browser translation checks.
+site_url: ""
+docs_dir: docs
+site_dir: .mkdocs-site
+use_directory_urls: true
+
+theme:
+  name: material
+  language: ja
+  features:
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - toc.follow
+    - search.suggest
+
+plugins:
+  - search
+
+markdown_extensions:
+  - admonition
+  - tables
+  - sane_lists
+  - toc:
+      permalink: true
+
+exclude_docs: |
+  .git/**
+  .claude/**
+  .cursor/**
+  .mkdocs-site/**
+  site/**
+  node_modules/**
+  dist/**
+  build/**
+  .venv/**
+  venv/**
+  __pycache__/**
+  99PercentSlops/**
+  shared-workflows/**
+  tools/**
+  .gitignore
+  .gitmodules
+  REPORT_CONFIG.yml
+  mkdocs.yml
+
+nav:
+  - Overview:
+      - Local Document View: index.md
+      - Project Map: PROJECT_MAP.md
+      - Implementation Index: IMPLEMENTATION_INDEX.md
+      - Progress Screenshots: screenshots/README.md
+      - Project Handover: HANDOVER.md
+      - Milestone Plan: MILESTONE_PLAN.md
+  - Specs:
+      - GDD 1.0: spec/GDD1.0.md
+      - Camera System: spec/CAMERA_SYSTEM.md
+      - Player Control System: spec/PLAYER_CONTROL_SYSTEM.md
+      - Skill Ideas: spec/SKILL_IDEAS.md
+  - Runtime State:
+      - Current Handoff: dev/HANDOFF_LOCAL_DOC_VIEW.md
+      - Workflow State SSOT: WORKFLOW_STATE_SSOT.md
+      - Resume: dev/RESUME.md
+      - Project Completion Assessment: tasks/TASK_026_ProjectCompletion_Assessment.md
+      - Phase 5 Validation Preflight: dev/PHASE5_VALIDATION_PREFLIGHT.md
+  - Development Notes:
+      - Turn-Based Development Plan: dev/TURN_PLAN.md
+      - Roadmap v2: dev/ROADMAP_v2.md
+      - Roadmap: dev/ROADMAP.md
+      - Project Audit: dev/PROJECT_AUDIT.md
+      - Player Camera Phased Implementation: dev/PLAYER_CAMERA_PHASED_IMPLEMENTATION_2026-02-09.md
+      - Sandbox Setup: dev/SANDBOX_SETUP.md
+      - Windsurf Rules Latest: Windsurf_AI_Collab_Rules_latest.md
+      - Windsurf Rules v2.0: Windsurf_AI_Collab_Rules_v2.0.md
+      - Windsurf Rules v1.1: Windsurf_AI_Collab_Rules_v1.1.md
+  - Artifacts:
+      - Tasks:
+          - TASK 013 CameraSettings SO: tasks/TASK_013_CameraSettings_SO.md
+          - TASK 014 GameEvents Camera: tasks/TASK_014_GameEvents_Camera.md
+          - TASK 015 Phase2A ResumeChecklist: tasks/TASK_015_Phase2A_ResumeChecklist.md
+          - TASK 016 SandboxScene SSOT Sync: tasks/TASK_016_SandboxScene_SSOT_Sync.md
+          - TASK 017 CameraSettings Asset Wiring: tasks/TASK_017_CameraSettings_Asset_Wiring.md
+          - TASK 018 CameraEvents Cinematic Validation: tasks/TASK_018_CameraEvents_Cinematic_Validation.md
+          - TASK 019 InputBinding Conflict Resolution: tasks/TASK_019_InputBinding_Conflict_Resolution.md
+          - TASK 020 PlayableLoop CoreFlow: tasks/TASK_020_PlayableLoop_CoreFlow.md
+          - TASK 021 UploadPort Objective Wiring: tasks/TASK_021_UploadPort_Objective_Wiring.md
+          - TASK 022 ResultHUD Minimal: tasks/TASK_022_ResultHUD_Minimal.md
+          - TASK 023 PlayableLoop ClearFail Finalize: tasks/TASK_023_PlayableLoop_ClearFail_Finalize.md
+          - TASK 024 Phase5 VerticalSlice Integration: tasks/TASK_024_Phase5_VerticalSlice_Integration.md
+          - TASK 025 UnityDeferred Validation Batch: tasks/TASK_025_UnityDeferred_Validation_Batch.md
+      - Reports:
+          - REPORT 013 CameraSettings SO: reports/REPORT_013_CameraSettings_SO.md
+          - REPORT 014 GameEvents Camera: reports/REPORT_014_GameEvents_Camera.md
+          - REPORT 015 Phase2A ResumeChecklist: reports/REPORT_015_Phase2A_ResumeChecklist.md
+          - REPORT 018 CameraEvents Cinematic Validation: reports/REPORT_018_CameraEvents_Cinematic_Validation.md
+          - REPORT 020 PlayableLoop CoreFlow: reports/REPORT_020_PlayableLoop_CoreFlow.md
+          - REPORT 021 UploadPort Objective Wiring: reports/REPORT_021_UploadPort_Objective_Wiring.md
+          - REPORT 022 ResultHUD Minimal: reports/REPORT_022_ResultHUD_Minimal.md
+          - REPORT 023 PlayableLoop ClearFail Finalize: reports/REPORT_023_PlayableLoop_ClearFail_Finalize.md
+          - REPORT 024 Phase5 VerticalSlice Integration: reports/REPORT_024_Phase5_VerticalSlice_Integration.md
+          - REPORT 025 UnityDeferred Validation Batch: reports/REPORT_025_UnityDeferred_Validation_Batch.md
+      - Inbox:
+          - Orchestrator Report 20260224 1900: inbox/REPORT_ORCH_20260224_1900.md
+          - Orchestrator Report 20260226 1353: inbox/REPORT_ORCH_20260226_1353.md
+          - Worker Prompt TASK 018: inbox/WORKER_PROMPT_TASK_018_CameraEvents_Cinematic_Validation.md
+          - Worker Prompt TASK 024: inbox/WORKER_PROMPT_TASK_024_Phase5_VerticalSlice_Integration.md
+          - Worker Prompt TASK 025: inbox/WORKER_PROMPT_TASK_025_UnityDeferred_Validation_Batch.md

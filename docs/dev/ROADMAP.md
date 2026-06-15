@@ -27,7 +27,7 @@
 | 項目 | 内容 |
 |------|------|
 | **目標** | Unityプロジェクト作成、フォルダ構成確立、最小スクリプト骨格 |
-| **成果物** | Unityプロジェクト一式、CLAUDE.md、Sandboxシーン（猫カプセルが動く） |
+| **成果物** | Unityプロジェクト一式、AGENTS.md、Sandboxシーン（猫カプセルが動く） |
 | **スクリプト** | PlayerController, DroneController(空実装), AIProp(enum定義), GameManager(骨格) |
 | **完了条件** | シーン再生で猫カプセルがWASD+Spaceで移動・ジャンプする |
 

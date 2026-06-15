@@ -136,7 +136,7 @@ Assets/_Project/Scripts/Player/
 
 | # | 課題 | 深刻度 | 推奨対応 |
 |---|------|--------|---------|
-| D-1 | **CLAUDE.md のフェーズ表記が不正確** | 低 | 「Phase 2（Scaffold）完了 → Phase 3」とあるが、ROADMAP の Phase 2 = Core Mechanics。Phase 1 = Scaffold。表記を修正。 |
+| D-1 | **AGENTS.md のフェーズ表記が不正確** | 低 | 「Phase 2（Scaffold）完了 → Phase 3」とあるが、ROADMAP の Phase 2 = Core Mechanics。Phase 1 = Scaffold。表記を修正。 |
 | D-2 | **Sandbox シーンが2箇所に重複** | 低 | `Assets/Scenes/Sandbox.unity` を削除し、`Assets/_Project/Scenes/Sandbox.unity` に一本化。 |
 | D-3 | **SampleScene.unity が残存** | 低 | Unity デフォルトシーン。不要なら削除。 |
 | D-4 | **GDD に「カメラ」「プレイヤー操作感」の仕様が薄い** | 中 | GDD1.0 への追記または CAMERA_SYSTEM.md / PLAYER_CONTROLS.md として分冊化（推奨）。 |
@@ -152,7 +152,7 @@ Assets/_Project/Scripts/Player/
 
 | ID | タスク | 分類 | 見積 |
 |----|--------|------|------|
-| T-001 | CLAUDE.md のフェーズ表記修正 | ドキュメント | 5分 |
+| T-001 | AGENTS.md のフェーズ表記修正 | ドキュメント | 5分 |
 | T-002 | 重複シーン整理（SampleScene 削除、Sandbox 統一） | プロジェクト整理 | 10分 |
 | T-003 | CAMERA_SYSTEM.md のレビュー・確定 | 仕様策定 | — |
 | T-004 | GDD1.0 にカメラシステムの節を追記参照 | ドキュメント | 15分 |

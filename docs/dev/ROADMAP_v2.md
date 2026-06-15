@@ -41,7 +41,7 @@ v1 と同一。以下の5項目が Sandbox シーン上で動作すること：
 
 | 項目 | 内容 | 状態 |
 |------|------|------|
-| Unity プロジェクト構成 | フォルダ構成、CLAUDE.md、命名規約 | ✅ |
+| Unity プロジェクト構成 | フォルダ構成、AGENTS.md、命名規約 | ✅ |
 | PlayerController | WASD + Space + マウスルック | ✅ |
 | DroneController + DroneBeam | 追従 + ビーム操作（掴み/投擲） | ✅ |
 | PropBase / AIProp / HumanProp | 状態遷移 + マテリアル切替 | ✅ |
@@ -64,7 +64,7 @@ v1 と同一。以下の5項目が Sandbox シーン上で動作すること：
 | 2A-6 | マウスホイールズーム + 1P⇔3P 自動切替 | 2A-5 | 1h | — 未着手 |
 | 2A-7 | CameraSettings ScriptableObject | 2A-4, 2A-5 | 0.5h | — 未着手 |
 | 2A-8 | GameEvents イベントシステム基盤 | — | 1h | — 未着手 |
-| 2A-9 | 重複シーン整理 + CLAUDE.md 修正 | — | 0.5h | ✅ CLAUDE.md 修正済 |
+| 2A-9 | 重複シーン整理 + AGENTS.md 修正 | — | 0.5h | ✅ AGENTS.md 修正済 |
 
 **完了条件**:
 - 三人称でプレイヤーの周囲を滑らかにオービットできる
@@ -247,7 +247,7 @@ Phase 1 (Scaffold) ✅
 
 ## 6. 推奨着手順序（次のアクション）
 
-1. **即座**: ✅ T-001（CLAUDE.md 修正）完了、T-002（シーン整理）未実施、T-005（AI_CONTEXT.md 作成）未実施
+1. **即座**: ✅ T-001（AGENTS.md 修正）完了、T-002（シーン整理）未実施、T-005（AI_CONTEXT.md 作成）未実施
 2. **Phase 2A 本実装**: CameraManager スタブを ICameraMode ベースに拡張、CameraSmoother / 1P / 3P モードを実装
 3. **Phase 2B 残件**: 2B-6（三人称向き制御）は 2A-5 完了後、 2B-7（チューニング）は Unity 上で実施
 4. **Unity セットアップ**: Player コンポーネント追加、PlayerBaseStats SO 作成、InputActions 更新、PhysicMaterial 適用

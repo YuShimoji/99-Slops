@@ -72,3 +72,6 @@ shared-workflows/
 
 # Build output
 build/
+
+# Local MkDocs preview output
+.mkdocs-site/
