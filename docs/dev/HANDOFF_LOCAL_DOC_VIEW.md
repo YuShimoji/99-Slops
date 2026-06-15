@@ -6,6 +6,7 @@ This handoff keeps the current documentation-view context inside the repository 
 
 - Branch: `codex/local-doc-view-handoff`
 - Remote: `origin` / `YuShimoji/99-Slops`
+- Draft PR: https://github.com/YuShimoji/99-Slops/pull/1
 - Purpose: add a local MkDocs Material viewer that makes the Markdown corpus browsable, auditable, and easier to inspect with browser-side translation.
 
 ## What Was Added
