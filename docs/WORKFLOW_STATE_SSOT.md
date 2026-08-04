@@ -1,33 +1,43 @@
 ﻿# WORKFLOW_STATE_SSOT
 
-## Meta
-- Last Updated: 2026-02-26T21:40:00+09:00
-- Owner: Orchestrator
-- Source of Truth: `shared-workflows/docs/windsurf_workflow/EVERY_SESSION.md`
+## Last Updated
+- 2026-06-15T23:18:48+09:00
 
-## Current Context
-- Current Phase: P5 (Worker Dispatch Preparation)
-- Active Task: `TASK_017_OverworldDirector_VariantResolver`
-- Test Phase: Stable (implementation started)
-- Branch: feature/task-016-story-catalog-metaflags
+## Current Checkout
+- Branch: `feature/task-016-story-catalog-metaflags`
+- Upstream: `origin/feature/task-016-story-catalog-metaflags`
+- Upstream parity after fetch/pull: `0 0`
+- HEAD: `8ad56a9` (`test(playmode): add minimal overworld director smoke tests`)
 
-## Layer Split (Verification Gate)
-- Layer A (AI-completable): IN_PROGRESS
-  - TASK_016 base implementation merged (StoryId / ChapterCatalog / MetaFlagService / EditMode tests)
-  - TASK_017 base implementation merged (ChapterVariantResolver / OverworldDirector / EditMode tests)
-- Layer B (manual / runtime execution): TODO
-  - Unity Editor run for compile + EditMode/PlayMode verification
+## Remote Sync
+- `git fetch --prune origin` completed.
+- `git pull --ff-only` on the current branch returned `Already up to date.`
+- New remote branch observed: `origin/codex/local-doc-view-handoff`.
+- `origin/master` is at `0e45e57` (`chore: sync unity upgrade and handoff context`).
 
-## Blocked Normal Form
-- Blocker Type: None
-- Blocked Scope: None
-- AI-Completable Scope (Layer A): None
-- User Runbook (Layer B): None
-- Resume Trigger: None
-- Re-proposal Suppression: N/A
+## Branch Relationship
+- Current feature branch and `origin/master` are not ancestor-related.
+- Local `master` and `origin/master` are also divergent (`master...origin/master` = `20 1`).
+- `origin/master` includes the newer Unity 6000.4.9f1 / URP 17.4.0 handoff lane and a project layout where the Unity project is under `99PercentSlops/`.
+- Do not merge `origin/master` into this dirty feature checkout without an explicit lane decision.
+
+## Local Working Tree
+- Existing tracked local changes were preserved:
+  - `.claude/settings.local.json`
+  - `.gitmodules` deleted
+  - `CLAUDE.md`
+  - `docs/WORKFLOW_STATE_SSOT.md`
+  - `shared-workflows` deleted
+- Existing untracked local items were preserved:
+  - `.serena/`
+  - `AGENTS.md`
+  - `nul`
+
+## Active Decision
+- If continuing the latest mainline, first preserve or discard the local dirty feature-branch changes intentionally, then move to `origin/master` / `origin/codex/local-doc-view-handoff`.
+- If continuing `feature/task-016-story-catalog-metaflags`, keep the branch isolated and treat `origin/master` as a separate Phase 5 validation lane.
 
 ## Next Action
-- Execute split EditMode tests for TASK_016/TASK_017 and collect artifacts
-- If green, start TASK_018 integration scaffold with minimal mock boundary
-
-
+1. Decide the lane: latest mainline validation vs current story-catalog feature branch.
+2. For latest mainline, work from `origin/master` and resume at `TASK_025` Unity deferred validation.
+3. For current feature branch, finish or shelve the local entrypoint/workflow cleanup before attempting any cross-branch merge.
