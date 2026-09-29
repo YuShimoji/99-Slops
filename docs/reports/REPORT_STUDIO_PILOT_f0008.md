@@ -22,12 +22,14 @@ Unity 6000.4.9f1の初回起動でPackage Managerが`The "path" argument must be
 
 同じ条件で`STUDIO_PILOT_BUILD_PATH=D:\GameProjectsStudioPilotBuild-20260930\StudioPilot.exe`を当該プロセス内だけに指定し、`StudioPilotBatch.Build`をUnityバッチで実行した。`Verify`の後、この別Scene一つのWindows 64-bit Player buildが成功し、Unityログは`STUDIO_PILOT_BUILD_SUCCEEDED`、終了コード0を記録した。Unityが報告するbuild全体のサイズは105,598,852 bytesで、出力の`StudioPilot.exe`単体のSHA-256は`a197542ad0d026c5c3bc7aead606b6b0184adad7b4ee3635326c575b25a5b423`。出力一式は`D:\GameProjectsStudioPilotBuild-20260930\`にある。元`Sandbox`と新SceneのSHA-256はbuild後も同じだった。
 
+build済みPlayerを`-batchmode -nographics -quit`で無画面起動した。`D:\GameProjectsStudioPilotBuild-20260930\player-smoke.log`にはUnity 6000.4.9f1の初期化と、`StudioPilot_f0008`内の既存`GameEventDebugLogger`の`Awake`／`OnEnable`が記録され、`exception`／`error`／`failed`の行はなかった。20秒では自動終了しなかったため、起動したプロセスIDだけを停止した。終了コード`-1`はこの手動停止によるもので、ゲームの正常終了を証明しない。ログのSHA-256は`b10652a1945fe3658858338af7adf227be981aa5c372934d05d74213eb1ceab2`。
+
 Unityはbuild中に既存のRender Pipeline設定などを自動更新し、PerformanceTestRunのJSONを削除した。build前にこの別チェックアウトが清潔だったことを確認し、差分と変更後ファイルを`Game Projects/.codex-tmp/gw-pilot-evidence/build-side-effects/`へ保存してから、その自動差分の対象ファイルだけを元へ戻した。作品側の保存データや元の作業レーンは触れていない。
 
 再確認には、このチェックアウトのUnity projectを指定し、`ALLUSERSPROFILE`を当該プロセス内だけに設定して`-batchmode -nographics -quit -executeMethod GlitchWorker.EditorTools.StudioPilotBatch.Verify`を実行する。buildを再実行する場合は新しい空の出力先を`STUDIO_PILOT_BUILD_PATH`に指定し、実行メソッドを`GlitchWorker.EditorTools.StudioPilotBatch.Build`にする。`Create`は新Sceneが存在する場合に停止するため、既存Sceneを上書きする再生成には使わない。
 
 ## まだ成立していないこと
 
-画面上の見え方、Playerの起動・操作、Unity Play Mode、机への物理・Prop属性の付与、既存Phase 5のV-01〜V-06、Studio通常操作から作品Sceneへの自動反映は検証していない。FBXは静的形状の候補で、元の材質・色が作品上で再現した証明でもない。別Scene一つのbuild成功は、既存の作品Gameplay Sceneやtestが通る証明ではない。従ってD1の「作品の一場面で使い、作品側build・testが通る」は未完了であり、美術や作品利用の採択も未了。
+画面上の見え方、Playerの操作、Unity EditorのPlay Mode、机への物理・Prop属性の付与、既存Phase 5のV-01〜V-06、Studio通常操作から作品Sceneへの自動反映は検証していない。無画面起動の`Awake`は描画や遊べる状態を証明しない。FBXは静的形状の候補で、元の材質・色が作品上で再現した証明でもない。別Scene一つのbuild成功は、既存の作品Gameplay Sceneやtestが通る証明ではない。従ってD1の「作品の一場面で使い、作品側build・testが通る」は未完了であり、美術や作品利用の採択も未了。
 
-次は作品正本に照らして机の役割と表示条件を具体化し、`TASK_025`のScene検証と衝突しない作品内の反映・Play Modeを確認する。AI Prop／Human Propなどの意味付けや見た目は、人間の判断材料を作ってから扱う。
+GDD1.0のOffice欄にはデスクの種類があるが、f0008のProp属性や見た目の採択までは指定されていない。次は`TASK_025`のScene検証と衝突しない作品内の表示・操作・Play Modeを確認する。AI Prop／Human Propなどの意味付けや見た目は、人間の判断材料を作ってから扱う。
