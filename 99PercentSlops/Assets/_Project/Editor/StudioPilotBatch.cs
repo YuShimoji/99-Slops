@@ -76,6 +76,44 @@ namespace GlitchWorker.EditorTools
                       " modelGuid=" + AssetDatabase.AssetPathToGUID(ModelPath));
         }
 
+        public static void Build()
+        {
+            Verify();
+
+            var outputPath = Environment.GetEnvironmentVariable("STUDIO_PILOT_BUILD_PATH");
+            if (string.IsNullOrWhiteSpace(outputPath) ||
+                !Path.IsPathRooted(outputPath) ||
+                !outputPath.EndsWith(".exe", StringComparison.OrdinalIgnoreCase))
+                throw new InvalidOperationException("Set STUDIO_PILOT_BUILD_PATH to a new absolute .exe path.");
+            if (File.Exists(outputPath))
+                throw new IOException("Studio pilot build already exists; refusing to overwrite it.");
+
+            var outputDirectory = Path.GetDirectoryName(outputPath);
+            if (Directory.Exists(outputDirectory))
+            {
+                foreach (var entry in Directory.EnumerateFileSystemEntries(outputDirectory))
+                    throw new IOException("Studio pilot build directory is not empty: " + entry);
+            }
+            else
+            {
+                Directory.CreateDirectory(outputDirectory);
+            }
+
+            var options = new BuildPlayerOptions
+            {
+                scenes = new[] { PilotScene },
+                locationPathName = outputPath,
+                target = BuildTarget.StandaloneWindows64,
+                options = BuildOptions.None,
+            };
+            var report = BuildPipeline.BuildPlayer(options);
+            if (report.summary.result != UnityEditor.Build.Reporting.BuildResult.Succeeded)
+                throw new InvalidOperationException("Studio pilot Player build failed: " + report.summary.result);
+
+            Debug.Log("STUDIO_PILOT_BUILD_SUCCEEDED path=" + outputPath +
+                      " bytes=" + report.summary.totalSize);
+        }
+
         private static string AbsoluteAssetPath(string assetPath)
         {
             return Path.Combine(Directory.GetParent(Application.dataPath).FullName,
