@@ -1,0 +1,64 @@
+{
+    "scene": "StudioPilot_f0008_RuntimeProbe",
+    "unityVersion": "6000.4.9f1",
+    "graphicsDevice": "NVIDIA GeForce GTX 1650 Ti",
+    "actionMap": "Player",
+    "playerState": "Idle",
+    "moveState": "Idle",
+    "jumpState": "Idle",
+    "cameraName": "Main Camera",
+    "inputActive": true,
+    "moveEnabled": true,
+    "jumpEnabled": true,
+    "grounded": true,
+    "moveGrounded": true,
+    "jumpGrounded": true,
+    "controlScheme": "Keyboard&Mouse",
+    "probeInput": "queued W and Space on existing Keyboard device",
+    "topMaterials": [
+        "TopSurface|Universal Render Pipeline/Lit|True|RGBA(0.820, 0.810, 0.740, 1.000)"
+    ],
+    "storageMaterials": [
+        "StorageSurface|Universal Render Pipeline/Lit|True|RGBA(0.820, 0.810, 0.740, 1.000)"
+    ],
+    "initialPlayer": [
+        0.0,
+        1.0,
+        1.509588159115349e-21
+    ],
+    "afterMovePlayer": [
+        0.0,
+        1.0,
+        0.4972570538520813
+    ],
+    "afterJumpPlayer": [
+        0.0,
+        4.74618673324585,
+        0.4972570538520813
+    ],
+    "cameraPosition": [
+        0.0,
+        1.7999999523162842,
+        1.509588159115349e-21
+    ],
+    "furnitureViewportCenter": [
+        0.31594234704971316,
+        0.10734367370605469,
+        3.9699997901916506
+    ],
+    "furnitureViewportBounds": [
+        0.20230375230312348,
+        -0.01720958948135376,
+        0.4102047383785248,
+        0.2106596827507019
+    ],
+    "movementMetres": 0.4972570538520813,
+    "jumpRiseMetres": 3.7472143173217775,
+    "moveActionPeak": 1.0,
+    "furnitureRenderers": 21,
+    "moveFrames": 108,
+    "jumpFrames": 50,
+    "jumpTriggeredFrames": 1,
+    "imageWidth": 960,
+    "imageHeight": 540
+}

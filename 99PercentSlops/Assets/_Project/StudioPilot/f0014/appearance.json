@@ -1,0 +1,134 @@
+{
+    "assetId": "asset:furniture-study",
+    "revision": "f0014",
+    "sourceHash": "443982e6cd178e9980f56f526a1083b743cbd39db28ec4fba57372f288cb2218",
+    "fbxHash": "ab830195fca88d517eccf198dbe0dbd697469fed35380731c71f8a4cf9e9e291",
+    "surfaces": [
+        {
+            "name": "TopSurface",
+            "color": [
+                0.8199999928474426,
+                0.8100000023841858,
+                0.7400000095367432
+            ],
+            "metallic": 0.0,
+            "roughness": 0.47999998927116396
+        },
+        {
+            "name": "StorageSurface",
+            "color": [
+                0.8199999928474426,
+                0.8100000023841858,
+                0.7400000095367432
+            ],
+            "metallic": 0.0,
+            "roughness": 0.47999998927116396
+        },
+        {
+            "name": "FrameSurface",
+            "color": [
+                0.10999999940395355,
+                0.15000000596046449,
+                0.14000000059604646
+            ],
+            "metallic": 0.6499999761581421,
+            "roughness": 0.36000001430511477
+        },
+        {
+            "name": "RubberSurface",
+            "color": [
+                0.029999999329447748,
+                0.03500000014901161,
+                0.03500000014901161
+            ],
+            "metallic": 0.0,
+            "roughness": 0.8500000238418579
+        }
+    ],
+    "meshSurfaces": [
+        {
+            "objectName": "Top",
+            "surface": "TopSurface"
+        },
+        {
+            "objectName": "TPost_0",
+            "surface": "FrameSurface"
+        },
+        {
+            "objectName": "Foot_0",
+            "surface": "FrameSurface"
+        },
+        {
+            "objectName": "Cap_0",
+            "surface": "FrameSurface"
+        },
+        {
+            "objectName": "TPad_0_0",
+            "surface": "RubberSurface"
+        },
+        {
+            "objectName": "TPad_0_1",
+            "surface": "RubberSurface"
+        },
+        {
+            "objectName": "CabinetOuter",
+            "surface": "StorageSurface"
+        },
+        {
+            "objectName": "CabinetInner",
+            "surface": "StorageSurface"
+        },
+        {
+            "objectName": "CabinetBack",
+            "surface": "StorageSurface"
+        },
+        {
+            "objectName": "CabinetBottom",
+            "surface": "StorageSurface"
+        },
+        {
+            "objectName": "CabinetCap",
+            "surface": "StorageSurface"
+        },
+        {
+            "objectName": "Drawer_0",
+            "surface": "StorageSurface"
+        },
+        {
+            "objectName": "Pull_0",
+            "surface": "FrameSurface"
+        },
+        {
+            "objectName": "Drawer_1",
+            "surface": "StorageSurface"
+        },
+        {
+            "objectName": "Pull_1",
+            "surface": "FrameSurface"
+        },
+        {
+            "objectName": "Drawer_2",
+            "surface": "StorageSurface"
+        },
+        {
+            "objectName": "Pull_2",
+            "surface": "FrameSurface"
+        },
+        {
+            "objectName": "CabinetFoot_0_0",
+            "surface": "FrameSurface"
+        },
+        {
+            "objectName": "CabinetFoot_0_1",
+            "surface": "FrameSurface"
+        },
+        {
+            "objectName": "CabinetFoot_1_0",
+            "surface": "FrameSurface"
+        },
+        {
+            "objectName": "CabinetFoot_1_1",
+            "surface": "FrameSurface"
+        }
+    ]
+}

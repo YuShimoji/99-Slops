@@ -1,0 +1,134 @@
+{
+  "assetId": "asset:furniture-study",
+  "revision": "f0008",
+  "sourceHash": "e0824105135dbec7558c66ebe92c3ed722c93c9c74af3d3b6a4059447c991cf9",
+  "fbxHash": "8411c1dcba69bee514338764c3e35cfc1bd00918523ae9ad5bc42a66057c51ee",
+  "surfaces": [
+    {
+      "name": "TopSurface",
+      "color": [
+        0.82,
+        0.81,
+        0.74
+      ],
+      "metallic": 0,
+      "roughness": 0.48
+    },
+    {
+      "name": "StorageSurface",
+      "color": [
+        0.82,
+        0.81,
+        0.74
+      ],
+      "metallic": 0,
+      "roughness": 0.48
+    },
+    {
+      "name": "FrameSurface",
+      "color": [
+        0.11,
+        0.15,
+        0.14
+      ],
+      "metallic": 0.65,
+      "roughness": 0.36
+    },
+    {
+      "name": "RubberSurface",
+      "color": [
+        0.03,
+        0.035,
+        0.035
+      ],
+      "metallic": 0,
+      "roughness": 0.85
+    }
+  ],
+  "meshSurfaces": [
+    {
+      "objectName": "Top",
+      "surface": "TopSurface"
+    },
+    {
+      "objectName": "TPost_0",
+      "surface": "FrameSurface"
+    },
+    {
+      "objectName": "Foot_0",
+      "surface": "FrameSurface"
+    },
+    {
+      "objectName": "Cap_0",
+      "surface": "FrameSurface"
+    },
+    {
+      "objectName": "TPad_0_0",
+      "surface": "RubberSurface"
+    },
+    {
+      "objectName": "TPad_0_1",
+      "surface": "RubberSurface"
+    },
+    {
+      "objectName": "CabinetOuter",
+      "surface": "StorageSurface"
+    },
+    {
+      "objectName": "CabinetInner",
+      "surface": "StorageSurface"
+    },
+    {
+      "objectName": "CabinetBack",
+      "surface": "StorageSurface"
+    },
+    {
+      "objectName": "CabinetBottom",
+      "surface": "StorageSurface"
+    },
+    {
+      "objectName": "CabinetCap",
+      "surface": "StorageSurface"
+    },
+    {
+      "objectName": "Drawer_0",
+      "surface": "StorageSurface"
+    },
+    {
+      "objectName": "Pull_0",
+      "surface": "FrameSurface"
+    },
+    {
+      "objectName": "Drawer_1",
+      "surface": "StorageSurface"
+    },
+    {
+      "objectName": "Pull_1",
+      "surface": "FrameSurface"
+    },
+    {
+      "objectName": "Drawer_2",
+      "surface": "StorageSurface"
+    },
+    {
+      "objectName": "Pull_2",
+      "surface": "FrameSurface"
+    },
+    {
+      "objectName": "CabinetFoot_0_0",
+      "surface": "FrameSurface"
+    },
+    {
+      "objectName": "CabinetFoot_0_1",
+      "surface": "FrameSurface"
+    },
+    {
+      "objectName": "CabinetFoot_1_0",
+      "surface": "FrameSurface"
+    },
+    {
+      "objectName": "CabinetFoot_1_1",
+      "surface": "FrameSurface"
+    }
+  ]
+}
