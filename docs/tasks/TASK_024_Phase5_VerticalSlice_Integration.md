@@ -1,7 +1,7 @@
 ﻿# TASK_024_Phase5_VerticalSlice_Integration
 
 ## Status
-COMPLETED (2026-02-27)
+VALIDATING (code integration implemented; Sandbox scene wiring / PlayMode pending)
 
 ## Tier / Branch
 - Tier: 1 (Core)

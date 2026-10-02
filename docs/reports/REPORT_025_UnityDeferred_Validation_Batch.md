@@ -2,7 +2,7 @@
 
 ## Meta
 - Task: TASK_025_UnityDeferred_Validation_Batch
-- Status: IN_PROGRESS
+- Status: BLOCKED (Scene Integration Batch prerequisite missing)
 - Date: 2026-02-27
 - Tier: 2 (Validation)
 - Scope: Manual PlayMode validation for TASK_020-024 in Sandbox

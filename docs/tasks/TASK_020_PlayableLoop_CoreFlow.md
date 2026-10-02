@@ -1,7 +1,7 @@
 ﻿# TASK_020_PlayableLoop_CoreFlow
 
 ## Status
-COMPLETED
+VALIDATING (code implemented; Sandbox scene wiring / PlayMode pending)
 
 ## Tier / Branch
 - Tier: 1 (Core)

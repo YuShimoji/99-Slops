@@ -1,5 +1,7 @@
 # TASK_026_ProjectCompletion_Assessment
 
+> **評価スナップショット**: `COMPLETED` は本評価文書の作成完了を指し、ゲーム完成を意味しません。割合は現在の進捗指標に使用せず、[WORKFLOW_STATE_SSOT](../WORKFLOW_STATE_SSOT.md) を参照してください。
+
 ## Status
 COMPLETED (2026-02-27)
 

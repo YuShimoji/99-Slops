@@ -1,7 +1,7 @@
 ﻿# TASK_023_PlayableLoop_ClearFail_Finalize
 
 ## Status
-COMPLETED
+VALIDATING (code implemented; TASK_025 PlayMode evidence pending)
 
 ## Tier / Branch
 - Tier: 1 (Core)

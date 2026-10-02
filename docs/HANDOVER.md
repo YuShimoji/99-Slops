@@ -1,5 +1,7 @@
 # Project Handover & Status
 
+> **履歴スナップショット**: 本書は過去の引き継ぎ記録です。現在地として更新・参照せず、[WORKFLOW_STATE_SSOT](WORKFLOW_STATE_SSOT.md) を使用してください。
+
 **Timestamp**: 2026-02-06T18:15:00+09:00
 **Actor**: Cascade
 **Type**: Handover

@@ -1,5 +1,7 @@
 ﻿# Mission Log
 
+> **履歴スナップショット**: 汎用Orchestrator互換の旧ログです。現在地は `docs/WORKFLOW_STATE_SSOT.md` だけを更新してください。
+
 ## Header
 - **Mission ID**: ORCH_20260216_1555
 - **Started At**: 2026-02-16T15:55:29+09:00

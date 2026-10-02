@@ -1,16 +1,17 @@
 ﻿# TASK_025_UnityDeferred_Validation_Batch
 
 ## Status
-OPEN
+BLOCKED (Scene Integration Batch prerequisite is not yet satisfied)
 
 ## Tier / Branch
 - Tier: 2 (Validation)
 - Branch: feature/unity-deferred-validation-batch
 
 ## Summary
-Unity復帰後に `COMPLETED_CORE` タスクの手動検証を一括実施し、DONE昇格の証跡をまとめる。
+Scene Integration Batch完了後にTASK_020〜024の手動検証を一括実施し、DONE昇格の証跡をまとめる。
 
 ## Dependency
+- `docs/WORKFLOW_STATE_SSOT.md` の Scene Integration Batch
 - `TASK_021_UploadPort_Objective_Wiring`
 - `TASK_022_ResultHUD_Minimal`
 - `TASK_023_PlayableLoop_ClearFail_Finalize`
@@ -19,7 +20,7 @@ Unity復帰後に `COMPLETED_CORE` タスクの手動検証を一括実施し、
 ## Scope
 - SandboxでUploadPort/HUD/Restartの一括検証。
 - 実測ログをレポートへ集約。
-- `COMPLETED_CORE` -> `DONE` 昇格可否を判定。
+- `VALIDATING` -> `DONE` 昇格可否を判定。
 
 ## Deliverables
 - `docs/reports/REPORT_025_UnityDeferred_Validation_Batch.md`
@@ -30,7 +31,7 @@ Unity復帰後に `COMPLETED_CORE` タスクの手動検証を一括実施し、
 - Forbidden: 実装拡張（検証のみ）
 
 ## Constraints
-- 今回セッションでは実行しない（Unity使用可能時のみ）。
+- Scene Integration Batch完了後、V-01〜V-06を一つのVerify Batchとして実行する。
 - 検証はチェックリスト駆動で漏れを防止。
 
 ## Definition of Done (DoD)
@@ -61,8 +62,9 @@ Unity復帰後に `COMPLETED_CORE` タスクの手動検証を一括実施し、
 | V-06 | クリア後に追加投入を試行 | Progressが上限を超えず誤遷移しない |
 
 ## Status Update Rule
-- V-01〜V-06がすべて PASS: `TASK_021/022` を `DONE` へ昇格候補、`TASK_025` を `COMPLETED`。
-- FAILが1件以上: 該当挙動を不具合として切り出し、`TASK_025` は `IN_PROGRESS` 継続。
+- 検証開始時: `TASK_025` を `VALIDATING`。
+- V-01〜V-06がすべて PASS: `TASK_020〜025` のAcceptanceを照合し、満たしたTaskを `DONE`。
+- FAILが1件以上: 原因ごとの修正Sliceへまとめ、`TASK_025` は `VALIDATING` を継続。
 
 ## Milestone
 - Phase 5 (Playable Loop)

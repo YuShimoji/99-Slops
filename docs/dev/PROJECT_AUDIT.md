@@ -1,5 +1,7 @@
 # GLITCH-WORKER プロジェクト監査レポート
 
+> **履歴スナップショット**: 2026-02-08時点の監査です。実装・進捗の現在地は [WORKFLOW_STATE_SSOT](../WORKFLOW_STATE_SSOT.md) を参照してください。
+
 **作成日**: 2026-02-08  
 **基準文書**: docs/spec/GDD1.0.md, docs/dev/ROADMAP.md  
 **対象**: 99PercentSlops Unity プロジェクト全体

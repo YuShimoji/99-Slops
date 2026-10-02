@@ -1,7 +1,7 @@
 ﻿# TASK_021_UploadPort_Objective_Wiring
 
 ## Status
-COMPLETED_CORE (Unity配置は手動作業が必要)
+VALIDATING (code implemented; Sandbox scene wiring / PlayMode pending)
 
 ## Tier / Branch
 - Tier: 1 (Core)
