@@ -92,6 +92,13 @@ Acceptance:
 - `git lfs fsck`: 問題なし。
 - Unity batch前後で既存status、tracked diff fingerprint、README、manifest、lockfileのhashは一致。今回生成した一時ログは集計後に削除した。
 
+## Cloud Codexの環境
+
+環境設定と実行コマンドは[Cloud開発手順](CLOUD_CODEX.md)を使う。
+`codex/cloud-codex-environment-20261011`は`master/a8c40b0`から分けた環境整備branchで、Unity rootは`99PercentSlops/`、Editorは6000.4.9f1。
+setup / maintenanceと構造検査の異常入力7試験を隔離checkoutで確認済み。Cloud登録・PublishとEditorの実行結果は、それぞれの環境setup report・検証記録で照合する。
+上記のScene integrationや手動検証の状態は維持する。
+
 ## 更新規則
 
 このファイルは、Current slice、Verification gate、Human Authority、次の一手のいずれかが変わったCloseoutで一度だけ更新します。Task / Report / Handover / Resume / Mission Logへ同じ現在地を複製しません。証跡はTask、PR、ログ、画像へ置き、ここから必要なものだけをリンクします。

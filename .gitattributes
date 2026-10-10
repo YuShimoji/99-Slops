@@ -1,0 +1,2 @@
+scripts/codex/*.sh text eol=lf
+scripts/codex/*.mjs text eol=lf

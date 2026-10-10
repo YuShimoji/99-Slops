@@ -73,6 +73,7 @@ AI生成ディストピアで猫の社畜がバグだらけの世界を物理で
 
 ## 関連ドキュメント
 
+- `docs/CLOUD_CODEX.md` — Cloud Codexの環境設定、Unity rootと検証範囲
 - `docs/spec/GDD1.0.md` — 正式 GDD（SSOT）
 - `docs/WORKFLOW_STATE_SSOT.md` — 現在地と次の実行スライス（進捗SSOT）
 - `docs/Windsurf_AI_Collab_Rules_latest.md` — project-local AI協調開発ルール
